@@ -1,7 +1,7 @@
-package com.kun.eis.member.service;
+package com.kun.eis.user.member.service;
 
-import com.kun.eis.member.vo.MemberUploadVO;
-import com.kun.eis.member.vo.MemberVO;
+import com.kun.eis.user.member.vo.MemberUploadVO;
+import com.kun.eis.user.member.vo.MemberVO;
 import org.apache.ibatis.annotations.Mapper;
 
 

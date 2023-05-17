@@ -1,11 +1,10 @@
-package com.kun.eis.member.controller;
+package com.kun.eis.user.member.controller;
 
 
-import com.kun.eis.business.controller.BusinessController;
-import com.kun.eis.member.vo.MemberVO;
+import com.kun.eis.user.business.controller.BusinessController;
+import com.kun.eis.user.member.vo.MemberVO;
 import com.kun.eis.common.util.BoardUtil;
-import com.kun.eis.member.service.MemberService;
-import com.kun.eis.member.vo.MemberVO;
+import com.kun.eis.user.member.service.MemberService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

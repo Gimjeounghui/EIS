@@ -1,11 +1,8 @@
-package com.kun.eis.member.vo;
+package com.kun.eis.user.member.vo;
 
 
 import com.kun.eis.common.vo.DefaultVO;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+
 
 import java.time.LocalDateTime;
 
@@ -16,10 +13,7 @@ import java.time.LocalDateTime;
  * MemberVO 수정 ( m_permiss, m_created_ate .. )
  */
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
+
 public class MemberVO extends DefaultVO {
 
     private String m_email;	//이메일

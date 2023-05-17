@@ -1,8 +1,6 @@
-package com.kun.eis.member.service;
+package com.kun.eis.user.member.service;
 
-
-import com.kun.eis.business.vo.BusinessVO;
-import com.kun.eis.member.vo.MemberVO;
+import com.kun.eis.user.member.vo.MemberVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

@@ -1,19 +1,11 @@
-package com.kun.eis.member.vo;
+package com.kun.eis.user.member.vo;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 
 /**
  * 23.05.04
  * MemberUploadVO 생성
  */
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class MemberUploadVO {
 
     private int m_upload_no;
