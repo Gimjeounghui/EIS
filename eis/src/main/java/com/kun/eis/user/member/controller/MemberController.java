@@ -23,7 +23,7 @@ import com.kun.eis.user.member.vo.MemberVO;
 public class MemberController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
-	
+	// test commit
 	@Autowired
 	private MemberService memberService;
 	
