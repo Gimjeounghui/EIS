@@ -18,7 +18,7 @@ public class HomeController {
 	public String home() {
 	
 		logger.info("메인 페이지 실행");
-		return "/test/testHome.tiles";
+		return "/common/index.tiles";
 		
 	}
 	
