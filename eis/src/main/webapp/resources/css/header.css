@@ -1,0 +1,270 @@
+/* header css */
+
+.top_gnb {
+	font-size:12px;
+	padding:14px 0px;
+	border-bottom:1px solid #eae2e2;
+	display:flex;
+}
+
+.top_gnb > ul {
+	display:flex;
+}
+
+.top_gnb > ul > li{
+	display:flex;
+	align-items:center;
+}
+
+.top_gnb > ul > li > * {
+	font-size:13px;
+}
+
+.top_gnb > ul > li >*:hover {
+	color:#EB2D36;
+	font-weight:600;
+}
+
+.top_gnb > .top_gnb_right > li {
+	padding-right:14px;
+}
+
+.top_gnb > .top_gnb_left{
+	margin-right:auto;
+}
+
+.top_gnb > .top_gnb_left > li {
+	padding-left:14px;
+}
+
+.top_gnb > .top_gnb_right{
+	margin-left:auto;
+}
+
+.top_search{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	padding:24px 0px;
+}
+
+/* search bar */
+.top_search > h1 {
+	margin-right:44px;
+}
+
+.top_search > .search_bar{
+	width:682px;
+	height:48px;
+	border:2px solid #eb2d36;
+	border-radius:5px;
+	display:flex;
+	flex-direction:row;
+	align-items:center;
+	position:relative;
+}
+
+.top_search > .search_bar > input {
+	font-size:18px;
+	color:#484848;
+	width:100%;
+	padding-left:12px;
+}
+
+.top_search > .search_bar > span{
+	display:inline-block;
+	padding-right:12px;
+}
+
+/* search bar tab1 ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï¿½ *//*
+.top_search > .search_bar  > .search_tab1{
+	width:682px;
+	background-color:#fff;
+	height:400px;
+	position:absolute;
+	top:42px;
+	left:-2px;
+	z-index:10;
+	border-radius: 0px 0px 5px 5px;
+    border: 2px solid #eb2d36;
+    border-top: transparent;
+    padding:12px;
+}
+
+.hide{
+	display:none;
+}
+
+ .is-active .search_tab1{
+ 	display:block;
+ }
+
+.search_tab1 > #searchGame > ul >li {
+	display:flex;
+	align-items:center;
+	font-size:14px;
+}
+
+.search_tab1 > #searchGame > ul >li >span{
+	background-color:#0735ff;
+	font-size:12px;
+	color:#fff;
+	padding: 2px 6px;
+    border-radius: 3px;
+    margin-right:4px;
+}
+
+.search_tab1 > #myGame > ul >li{
+	font-size:14px;
+	display:flex;
+	align-items:center;
+}
+
+.search_tab1 > #myGame > ul >li >i{
+	padding-right:4px;
+	padding-top:2px;
+	color:#797475;
+}
+
+.search_tab1 > #myGame > ul >li:first-child{
+	font-weight:600;
+	margin-bottom:8px;
+}
+ */
+/* search bar tab2 */
+.top_search > .search_bar  > .search_tab2{
+	width:682px;
+	background-color:#fff;
+	height:400px;
+	position:absolute;
+	top:42px;
+	left:-2px;
+	z-index:10;
+	border-radius: 0px 0px 5px 5px;
+    border: 2px solid #eb2d36;
+    border-top: transparent;
+    padding:12px;
+}
+
+.top_search > .search_bar  > .search_tab2 > .tab2_wrap{
+	display:flex;
+	height:100%;
+}
+
+.top_search > .search_bar  > .search_tab2 > .tab2_wrap > ul{
+	width:33.3%;
+	border-radius:5px;
+	font-size:14px;
+	padding:12px;
+}
+
+.top_search > .search_bar  > .search_tab2 > .tab2_wrap > ul:not(:first-child){
+	overflow-y:scroll;
+}
+
+/*½ºÅ©·Ñ¹Ù ½ºÅ¸ÀÏ*/
+
+.scroll_st1::-webkit-scrollbar-track
+{
+	background-color: #F5F5F5;
+}
+
+.scroll_st1::-webkit-scrollbar
+{
+	width: 8px;
+	border-radius:10px;
+	background-color: #282828;
+}
+
+.scroll_st1::-webkit-scrollbar::hover{
+	cursor:pointer;
+}
+
+.scroll_st1::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	background-color: #555;
+}
+
+.top_search > .search_bar  > .search_tab2 > .tab2_wrap > ul:nth-child(1),.top_search > .search_bar  > .search_tab2 > .tab2_wrap > ul:nth-child(3){
+	border:1px solid #e8e8e8;
+}
+.top_search > .search_bar  > .search_tab2 > .tab2_wrap > ul:nth-child(2){
+	border-top:1px solid #e8e8e8;
+	border-bottom:1px solid #e8e8e8;
+}
+
+.top_search > .search_bar  > .search_tab2 > .tab2_wrap > ul > li{
+	display:flex;
+	justify-content:space-between;
+	padding:2px 0px;
+}
+
+.top_search > .search_bar  > .search_tab2 > .tab2_wrap > ul > li:hover{
+	cursor:pointer;
+	background-color:#1871ce;
+	color:#fff;
+}
+
+.top_search > .search_bar  > .search_tab2 > .tab2_wrap > ul > li > i {
+	line-height:20px;
+	display:block;
+	margin-right:4px;
+}
+
+/* lnb ï¿½Îºï¿½ */
+.main_lnb {
+	display:flex;
+	justify-content:center;
+	border-top:1px solid #eae2e2;
+	border-bottom:1px solid #eae2e2;
+}
+
+.main_lnb > ul {
+	display:flex;
+	font-size:16px;
+	font-weight:600;
+	margin-bottom:0;
+}
+
+.main_lnb > ul > li {
+	padding:18px 28px;
+}
+
+.main_lnb > ul > li:first-child {
+	border-right:1px solid #eae2e2;
+	border-left:1px solid #eae2e2;
+}
+
+.main_lnb > ul > li:not(:first-child) {
+	border-right:1px solid #eae2e2;
+}
+
+.selectHeaderElmnt{
+	color: rgb(255, 0, 0);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
