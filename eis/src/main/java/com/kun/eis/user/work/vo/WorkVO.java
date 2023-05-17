@@ -3,7 +3,9 @@ package com.kun.eis.user.work.vo;
 
 import java.time.LocalDateTime;
 
-public class WorkVO {
+import com.kun.eis.common.vo.DefaultVO;
+
+public class WorkVO extends DefaultVO {
  
 	private int w_no;
     private String m_email;

@@ -20,5 +20,25 @@
     	FROM WORK		
     
     </select>
-    
+    <select id="workList">
+   		 select *
+   		 from WORK 
+    </select>
+
+	<select id="workDetail" resultType="WorkVO">
+		select *
+		from WORK
+		where w_no = #{w_no} 
+	</select>
+	
+	<update id="workUpdate">
+		update WORK
+		set w_title = #{w_title}, w_content = #{w_content}
+		where w_no = #{w_no} </update>
+	
+	<delete id="workDelete">
+		delete from WORK
+		where w_no = #{w_no} 
+	</delete>
+
 </mapper>

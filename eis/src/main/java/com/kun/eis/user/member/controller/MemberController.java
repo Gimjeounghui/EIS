@@ -1,7 +1,6 @@
 package com.kun.eis.user.member.controller;
 
 
-import com.kun.eis.user.business.controller.BusinessController;
 import com.kun.eis.user.member.vo.MemberVO;
 import com.kun.eis.common.util.BoardUtil;
 import com.kun.eis.user.member.service.MemberService;
@@ -47,6 +46,54 @@ public class MemberController {
     @Autowired
     private MemberService memberService;
 
+    @RequestMapping(value="/memberList")
+    public String memberList(@ModelAttribute("searchVO") MemberVO vo, Model model, HttpSession session) {
+
+        // 게시판 UTIL
+        BoardUtil boardUtil = new BoardUtil();
+        List<MemberVO> memberList = null;
+
+        try {
+
+            /**
+             * 게시판 기능
+             */
+            int totalRecordCount = 0; 								// 총 게시물 건수
+            int currentPageNo = vo.getCurrentPageNo(); 				// 현재 클릭한 page번호
+            int pageSize = vo.getPageSize(); 						// 페이지 리스트에 게시되는 페이지 건수
+            int recordCountPerPage = vo.getRecordCountPerPage();	// 한 페이지당 게시되는 게시물 건 수
+
+            // 게시물 조회 범위 연산
+            HashMap<String, Integer> rangeMap = boardUtil.calcDataRange(currentPageNo, recordCountPerPage);
+            vo.setStart(rangeMap.get("firstRecordIndex"));
+            vo.setEnd(rangeMap.get("lastRecordIndex"));
+
+            // 전체 검색 결과
+             memberList = memberService.MemberList(vo);   //memberList 생성
+
+            // 검색된 결과가 있는지 체크
+            if(memberList.size() > 0) { // memberList의 데이터가 존재 할 때
+                // 전체 검색 결과 게시물 건 수
+                totalRecordCount = memberList.get(0).getTotalRecordCount(); //get쌧미
+            }
+
+            // pager기능 모든 계산식 결과 정보 map에 담기
+            HashMap<String, Integer> pagerMap = boardUtil.calcBoardPagerElement(currentPageNo, totalRecordCount, recordCountPerPage, pageSize);
+
+            // model 세팅
+            model.addAttribute("memberList", memberList);
+            model.addAttribute("pagerMap", pagerMap);
+
+        } catch (Exception e) {
+
+            logger.info(e.getMessage());
+            e.printStackTrace();
+        }
+
+        return "/member/memberList";
+    }
+    
+    
     @RequestMapping("/memberLogin")
     public String memberLogin(@ModelAttribute("MemberVO") MemberVO vo, Model model,
                             HttpSession session, HttpServletRequest request) {
