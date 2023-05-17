@@ -1,17 +1,29 @@
-package com.kun.eis.user.member.service;
+package com.kun.eis.member.service;
+
+import com.kun.eis.business.vo.BusinessVO;
+import com.kun.eis.member.vo.MemberVO;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
-
-import com.kun.eis.user.member.vo.MemberVO;
+	/**
+	 * 23.04.28
+	 * MemberService 추가
+	 * memberRegist, memberDetail .. 추가
+	 */
 
 public interface MemberService {
-	
-	/**
-	 * 테스트 항목 리스트
-	 * @param vo
-	 * @return List
-	 * @throws Exception
-	 */
-	public List<MemberVO> selectMemberList(MemberVO vo);
 
-}
+	public List<MemberVO> MemberList(MemberVO vo);
+
+	public MemberVO selectPwCode(MemberVO vo) throws Exception;
+
+	public boolean memberRegist(MemberVO vo);
+
+	public MemberVO memberDetail(String m_email);
+
+	public boolean memberUpdate(MemberVO vo, MultipartFile m_photo);
+
+	public boolean memberDelete(String m_email);
+
+
+    }

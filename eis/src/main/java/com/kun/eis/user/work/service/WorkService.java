@@ -13,5 +13,13 @@ public interface WorkService {
 	 * @throws Exception
 	 */
 	public List<WorkVO> selectWorkList(WorkVO vo);
+	
+	public boolean workRegist(WorkVO vo);
+
+	public WorkVO workDetail(int w_no);
+
+	public boolean workUpdate(WorkVO vo);
+
+	public boolean workDelete(int w_no);
 
 }

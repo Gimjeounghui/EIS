@@ -1,14 +1,37 @@
-package com.kun.eis.user.member.service;
+package com.kun.eis.member.service;
+
+import com.kun.eis.member.vo.MemberUploadVO;
+import com.kun.eis.member.vo.MemberVO;
+import org.apache.ibatis.annotations.Mapper;
+
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Mapper;
-
-import com.kun.eis.user.member.vo.MemberVO;
+/**
+ * 23.04.28
+ * MemberMapper 추가
+ * ( memberUpdate, memberDelete ..)
+ * 23.05.04
+ * MemberImageInsert 추가
+ */
 
 @Mapper
 public interface MemberMapper {
 
-	public List<MemberVO> selectMemberList(MemberVO vo);
+	public List<MemberVO> MemberList(MemberVO vo);
+
+	public MemberVO selectPwCode(MemberVO vo);
+
+	public boolean memberUpdate(MemberVO vo);
+
+	public boolean memberDelete(String m_email);
+
+	public boolean memberRegist(MemberVO vo);
+
+	public MemberVO memberDetail(String m_email);
+
+	public boolean memberImageInsert(MemberUploadVO vo); //회원 이미지 업로드
+
+
 
 }
