@@ -14,6 +14,14 @@ public interface BusinessService {
 	 */
 	public List<BusinessVO> selectBusinessList(BusinessVO vo);
 
-	public BusinessVO selectPwCode(BusinessVO vo) throws Exception;
+	public BusinessVO selectTitleYn(BusinessVO vo);
+
+	public int insertBusiness(BusinessVO vo);
+	
+	public int updateBusiness(BusinessVO vo);
+	
+	/* 삭제 메서드 생성 */
+	
+	public BusinessVO selectBusinessDetail(BusinessVO vo);
 	
 }

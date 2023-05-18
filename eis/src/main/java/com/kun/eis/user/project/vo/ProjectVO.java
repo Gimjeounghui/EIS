@@ -6,7 +6,7 @@ public class ProjectVO extends DefaultVO {
 	
 	private int pNo; 			// 프로젝트 번호
 	
-	private String mEmail; 		// 회원 이메일
+	private String m_email; 	// 회원 이메일
 	
 	private String pTitle; 		// 프로젝트 제목
 	
@@ -27,12 +27,12 @@ public class ProjectVO extends DefaultVO {
 		this.pNo = pNo;
 	}
 
-	public String getmEmail() {
-		return mEmail;
+	public String getm_email() {
+		return m_email;
 	}
 
-	public void setmEmail(String mEmail) {
-		this.mEmail = mEmail;
+	public void setm_email(String m_email) {
+		this.m_email = m_email;
 	}
 
 	public String getpTitle() {

@@ -15,13 +15,31 @@ public class BusinessServiceImpl implements BusinessService {
 
 	@Override
 	public List<BusinessVO> selectBusinessList(BusinessVO vo) {
-		
+
 		return businessMapper.selectBusinessList(vo);
 	}
 
 	@Override
-	public BusinessVO selectPwCode(BusinessVO vo) throws Exception {
+	public BusinessVO selectTitleYn(BusinessVO vo) {
 
-		return businessMapper.selectPwCode(vo);
+		return businessMapper.selectTitleYn(vo);
+	}
+
+	@Override
+	public int insertBusiness(BusinessVO vo) {
+
+		return businessMapper.insertBusiness(vo);
+	}
+
+	@Override
+	public int updateBusiness(BusinessVO vo) {
+
+		return businessMapper.updateBusiness(vo);
+	}
+
+	@Override
+	public BusinessVO selectBusinessDetail(BusinessVO vo) {
+
+		return businessMapper.selectBusinessDetail(vo);
 	}
 }

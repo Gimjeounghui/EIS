@@ -43,25 +43,4 @@
 		</beans:property>
 	</beans:bean>
 
-	<interceptors>
-    	<interceptor>
-    		<mapping path="/**"/>
-    		<exclude-mapping path="/**/*.json"/>
-    		<exclude-mapping path="/**/*.js"/>
-    		<exclude-mapping path="/**/*.css"/>
-    		<exclude-mapping path="/webjars/**"/>
-    		<exclude-mapping path="/img/**"/>
-    		<exclude-mapping path="/"/>
-    		<exclude-mapping path="/js/**"/>
-
-   		 	<!-- 개발단계 exclude 추가 : 배포 전 삭제예정 -->
-    		<exclude-mapping path="/member/**"/>
-    		<exclude-mapping path="/business/**"/>
-    		<exclude-mapping path="/work/**"/>
-    		<exclude-mapping path="/project/**"/>
-		
-    		<beans:bean class="com.kun.eis.common.util.SessionUtil"/>
-    	</interceptor>
-    </interceptors>
-
 </beans:beans>

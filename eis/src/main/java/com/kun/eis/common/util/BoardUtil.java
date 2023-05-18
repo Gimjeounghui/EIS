@@ -9,8 +9,8 @@ public class BoardUtil {
 
 	private static final Logger logger = LoggerFactory.getLogger(BoardUtil.class);
 
-	private final int defaultRecordCountPerPage = 40; //한 페이지당 게시되는 게시물 건 수
-	private final int defaultPageSize = 5; //페이지 리스트에 게시되는 페이지 건수
+	private final int defaultRecordCountPerPage = 10;	// 한 페이지당 게시되는 게시물 건 수
+	private final int defaultPageSize = 5; 			 	// 페이지 리스트에 게시되는 페이지 건수
 
 	/*
 	 * 게시판 페이징 구성에 필요한 수치들을 연산.
@@ -18,7 +18,6 @@ public class BoardUtil {
 	 * recordCountPerPage = 한 페이지당 게시되는 게시물 건 수
 	 * pageSize = 페이지 리스트에 게시되는 페이지 건수
 	 * totalRecordCount = 전체 게시물 건 수
-	 *
 	 */
 	public HashMap<String, Integer> calcBoardPagerElement(int curPageNo, int totalRecordCount, int recordCountPerPage, int pageSize){
 		int currentPageNo = curPageNo<=1 ? 1 : curPageNo;
@@ -32,28 +31,29 @@ public class BoardUtil {
 		logger.debug("페이지 리스트에 게시되는 페이지 건수 pageSize = "+pageSize);
 		logger.debug("전체 게시물 건 수 totalRecordCount = "+totalRecordCount);
 
-		//페이지 개수
+		// 페이지 개수
 		int totalPageCount = ((totalRecordCount-1)/recordCountPerPage) + 1;
 
-		//페이지 리스트의 첫 페이지 번호
+		// 페이지 리스트의 첫 페이지 번호
 		int firstPageNoOnPageList = ((currentPageNo-1)/pageSize)*pageSize + 1;
 
-		//페이지 리스트의 마지막 페이지 번호
+		// 페이지 리스트의 마지막 페이지 번호
 		int lastPageNoOnPageList = firstPageNoOnPageList+pageSize-1;
 
-		//이전 페이지
+		// 이전 페이지
 		int prevPageNoOnPageList = firstPageNoOnPageList-1<1 ? 1 : firstPageNoOnPageList-1;
 
-		//다음 페이지
+		// 다음 페이지
 		int nextPageNoOnPageList = lastPageNoOnPageList+1;
 
-		//페이지 리스트의 마지막 페이지 번호가 전체 페이지 수보다 큰지 체크
+		// 페이지 리스트의 마지막 페이지 번호가 전체 페이지 수보다 큰지 체크
 		logger.debug("");
 		logger.debug("페이지 리스트의 마지막 페이지 번호가 전체 페이지 수보다 큰지 체크");
 		logger.debug(lastPageNoOnPageList+" > "+totalPageCount);
 		logger.debug("");
 
-		if(lastPageNoOnPageList > totalPageCount){
+		if(lastPageNoOnPageList > totalPageCount) {
+			
 			lastPageNoOnPageList = totalPageCount;
 			nextPageNoOnPageList = totalPageCount;
 		}
@@ -89,9 +89,9 @@ public class BoardUtil {
 	 * recordCountPerPage = 한 페이지당 게시되는 게시물 건 수
 	 * pageSize = 페이지 리스트에 게시되는 페이지 건수
 	 * totalRecordCount = 전체 게시물 건 수
-	 *
 	 */
-	public HashMap<String, Integer> calcDataRange(int curPageNo, int recordCountPerPage){
+	public HashMap<String, Integer> calcDataRange(int curPageNo, int recordCountPerPage) {
+
 		logger.debug("- - PARAM - -");
 		logger.debug("curPageNo : "+curPageNo);
 		logger.debug("recordCountPerPage : "+recordCountPerPage);
@@ -104,10 +104,10 @@ public class BoardUtil {
 		logger.debug("curPageNo : "+curPageNo);
 		logger.debug("recordCountPerPage : "+recordCountPerPage);
 
-		//페이징 SQL의 조건절에 사용되는 시작 rownum
+		// 페이징 SQL의 조건절에 사용되는 시작 rownum
 		int firstRecordIndex = ((currentPageNo - 1) * recordCountPerPage) +1;
 
-		//페이징 SQL의 조건절에 사용되는 마지막 rownum
+		// 페이징 SQL의 조건절에 사용되는 마지막 rownum
 		int lastRecordIndex = currentPageNo * recordCountPerPage;
 
 		HashMap<String, Integer> returnMap = new HashMap<String, Integer>();

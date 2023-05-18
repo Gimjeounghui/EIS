@@ -17,16 +17,8 @@ public class HomeController {
 	@RequestMapping(value="/", method = RequestMethod.GET)
 	public String home() {
 	
-		logger.info("메인 페이지 실행");
+		logger.info("index 페이지 실행");
 		return "/common/index.tiles";
-		
-	}
-	
-	@RequestMapping(value="/goLogin")
-	public String common() {
-		
-		logger.info("goLogin.jsp 실행");
-		return "/user/common/goLogin.tiles";
 		
 	}
 }

@@ -18,22 +18,6 @@
 		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}/{3}.jsp" />  
    </definition>
    
-   <definition name="layout_login" template="/WEB-INF/tiles/layout/layout_login.jsp">  
-   </definition>
-   
-   <definition name="/*/*.tiles_onlyBody" extends="layout_login">  
-		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />  
-   </definition>
-   
-   <definition name="layout_noHeader" template="/WEB-INF/tiles/layout/layout_noHeader.jsp">  
-   </definition>
-   
-   <definition name="/*/*.tiles_noHeader" extends="layout_noHeader">  
-		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />  
-   </definition>
-   
-    <definition name="/*/*/*.tiles_noHeader" extends="layout_noHeader">  
-		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}/{3}.jsp" />  
-   </definition>
+   <!-- index.jsp 전용 tiles 코드 작성 필요(header, footer 포함) -->
    
 </tiles-definitions>
