@@ -11,6 +11,7 @@
 	</script>
 
 	<body>
-		<p>메인이다옹</p>
-		<a href="/member/listMember">회원 리스트</a>
+	<p>
+		<strong>비번찾기다옹</strong>
+	</p>
 	</body>

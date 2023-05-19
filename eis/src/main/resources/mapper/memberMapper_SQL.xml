@@ -4,24 +4,47 @@
 
 <mapper namespace="com.kun.eis.user.member.service.MemberMapper">
     
-  <select id="memberList">
-        select *
-        from MEMBER
-        order by m_created_ate;
-    </select>
+<select id="selectListMember" resultType="memberVO" parameterType="memberVO">
 
-    <insert id="memberRegist">
+	SELECT
+	    BOARD2.*
+	FROM(
+	    SELECT
+	        COUNT(*) OVER() AS totalRecordCount,
+	        BOARD1.*
+	    FROM(
+		        SELECT
+				         ROW_NUMBER() OVER (ORDER BY m_created_ate DESC) AS rnum
+			    	
+			    		,m_email
+			    		,m_name
+			    		,m_pw
+			    		,m_phone
+			    		,m_permiss
+			    		,m_type
+			    		,m_created_ate
+		    			
+			    	FROM   MEMBER
+
+				
+				 ) BOARD1
+		) BOARD2
+		WHERE	BOARD2.RNUM BETWEEN #{start} AND #{end}
+    
+    </select>
+    
+    <insert id="registMember" parameterType="memberVO">
         insert into MEMBER (m_email, m_name, m_pw, m_phone)
         values(#{m_email}, #{m_name}, #{m_pw}, #{m_phone})
     </insert>
 
-    <update id="memberUpdate">
+    <update id="updateMember" parameterType="memberVO">
         update MEMBER
         set m_photo = #{m_photo}
         where m_email = #{m_email}
     </update>
 
-    <delete id="memberDelete">
+    <delete id="deleteMember" parameterType="memberVO">
         delete m, u from MEMBER m
     	left join MEMBER_UPLOAD u
     	on (m.m_email = u.m_email)
@@ -42,7 +65,7 @@
     -->
 
 
-    <insert id= "memberImageInsert">
+    <insert id= "imageInsertMember" parameterType="memberVO">
         <selectKey resultType = "String" keyProperty="m_email" order ="BEFORE">
         select max(m_email) as m_email from MEMBER where m_email = #{m_email}
         </selectKey>
@@ -51,13 +74,13 @@
     </insert>
 
 
-    <update id="memberImgUpdate">
+    <update id="updateImgMember" parameterType="memberVO">
         update MEMBER_UPLOAD set m_photo_path = #{m_photo_path},
                                m_photo = #{m_photo}
         where m_email = #{m_email}
     </update>
 
-    <update id="memberPermiss">
+    <update id="permissMember" parameterType="memberVO">
         update MEMBER set m_permiss = #{m_permiss}
         where m_email = #{m_email}
 
@@ -72,13 +95,13 @@
         23.05.09
         memberWork 생성, memberPorject .. 생성 완료
     -->
-    <select id="memberDetail" resultType="MemberVO">
+    <select id="detailMember" resultType="memberVO" parameterType="memberVO">
         select m_name, m_photo
         from MEMBER
         where m_email = #{m_email}
     </select>
 
-    <select id="memberWork" resultType="MemberVO">
+    <select id="workMember" resultType="memberVO" parameterType="memberVO">
         select w_title
         from MEMBER m INNER JOIN WORK w on (m.m_email = w.m_email)
         where m_email = #{m_email}
@@ -87,7 +110,7 @@
 
     </select>
 
-    <select id="memberProject" resultType="MemberVO">
+    <select id="projectMember" resultType="memberVO" parameterType="memberVO">
         SELECT p_title
         FROM MEMBER m INNER JOIN PROJECT_EMPLOYEE p ON (m.m_email = p.m_email)
         WHERE p.p_emp_no LIKE #{m_email}
@@ -101,15 +124,15 @@
         where m_email = #{m_email}
     </select>
 
-    <select id="login" resultType="MemberVO">
+    <select id="login" resultType="memberVO" parameterType="memberVO">
         select m.m_email, m.m_name, m.m_pw, m_up.m_photo_path, m_up.m_photo
         from MEMBER m right join MEMBER_UPLOAD m_up on m.m_email = m_up.m_email
         where m.m_email = #{m_email} and m.m_pw = #{m_pw}
     </select>
 
-    <select id="loginCheck" resultType="int">
+    <select id="isLogin" resultType="int">
         select count(*)
-        from user
+        from MEMBER
         where m_email = #{m_email} and m_pw = #{m_pw}
     </select>
 

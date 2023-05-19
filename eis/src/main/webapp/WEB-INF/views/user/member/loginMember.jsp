@@ -1,16 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-	
-	<script type="text/javascript">
-	
-		$(function() {
-	
-		});
-	
-	</script>
 
-	<body>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
 <h1>Login</h1>
 <form action="memberLogin" method="post">
     <label for="m_email">Email:</label>
@@ -27,3 +23,4 @@
 <a href="singUp">회원가입</a>
 <a href="forget_pw">비밀번호 찾기</a>
 </body>
+</html>

@@ -1,6 +1,7 @@
 package com.kun.eis.user.member.service;
 
 import com.kun.eis.user.member.vo.MemberVO;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -33,25 +34,25 @@ public class MemberServiceImpl implements MemberService {
 	String uploadPath;
 
 	@Override
-	public List<MemberVO> MemberList(MemberVO vo) {
-
-		return memberMapper.MemberList(vo);
+	public List<MemberVO> selectListMember(MemberVO vo) {
+		return memberMapper.selectListMember(vo);
 	}
+	
 	@Override
 	public MemberVO selectPwCode(MemberVO vo)  {
 		return memberMapper.selectPwCode(vo);
 	}
 
 	@Override
-	public boolean memberRegist(MemberVO vo) {
-		return memberMapper.memberRegist(vo);
+	public boolean registMember(MemberVO vo) {
+		return memberMapper.registMember(vo);
 	}
 
 
 
 	@Override
-	public MemberVO memberDetail(String m_email) {
-		return memberMapper.memberDetail(m_email);
+	public MemberVO detailMember(MemberVO vo) {
+		return memberMapper.detailMember(vo);
 	}
 
 	/**
@@ -75,8 +76,8 @@ public class MemberServiceImpl implements MemberService {
 	 */
 	@Transactional
 	@Override
-	public boolean memberUpdate(MemberVO vo, MultipartFile m_photo) {
-		boolean result = memberMapper.memberUpdate(vo);
+	public boolean updateMember(MemberVO vo, MultipartFile m_photo) {
+		boolean result = memberMapper.updateMember(vo);
 
 		String imageOrigin = m_photo.getOriginalFilename();
 		String imageName = imageOrigin.substring(imageOrigin.lastIndexOf("/") + 1);
@@ -125,11 +126,21 @@ public class MemberServiceImpl implements MemberService {
 
 	@Transactional
 	@Override
-	public boolean memberDelete(String m_email) {
-		return memberMapper.memberDelete(m_email);
+	public boolean deleteMember(String m_email) {
+		return memberMapper.deleteMember(m_email);
 	}
 
-
+	@Transactional
+	@Override
+	public MemberVO login(MemberVO vo) {
+		return memberMapper.login(vo);
+	}
+	
+	@Override
+	public int isLogin(MemberVO vo) {
+		return memberMapper.isLogin(vo);
+	}
+	
 
 
 }

@@ -16,23 +16,24 @@ import java.time.LocalDateTime;
 
 public class MemberVO extends DefaultVO {
 
-    private String m_email;	//이메일
+
+	private String m_email;	//이메일
 
     private String m_name; //성별
 
     private String m_pw;  //패스워드코드
 
     private String m_phone;
-
-    private String m_photo;
-
-    private String m_photo_path;
+    
+    private char m_type;
 
     private char m_permiss;
 
     private LocalDateTime m_created_ate;
 
     private LocalDateTime m_updated_ate;
+    
+    private LocalDateTime m_deleted_ate;
 
     public String getM_email() {
 		return m_email;
@@ -66,20 +67,12 @@ public class MemberVO extends DefaultVO {
 		this.m_phone = m_phone;
 	}
 
-	public String getM_photo() {
-		return m_photo;
+	public char getM_type() {
+		return m_type;
 	}
 
-	public void setM_photo(String m_photo) {
-		this.m_photo = m_photo;
-	}
-
-	public String getM_photo_path() {
-		return m_photo_path;
-	}
-
-	public void setM_photo_path(String m_photo_path) {
-		this.m_photo_path = m_photo_path;
+	public void setM_type(char m_type) {
+		this.m_type = m_type;
 	}
 
 	public char getM_permiss() {
@@ -114,6 +107,5 @@ public class MemberVO extends DefaultVO {
 		this.m_deleted_ate = m_deleted_ate;
 	}
 
-	private LocalDateTime m_deleted_ate;
 
 }
