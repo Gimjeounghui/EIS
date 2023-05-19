@@ -109,21 +109,17 @@
 							<!-- 게시판필요요소 -->
 	
 							<!-- 현재 클릭한 페이지 넘버 -->
-							<input type="hidden" name="currentPageNo" id="currentPageNo"
-								value="${pagerMap['currentPageNo']}">
+							<input type="hidden" name="currentPageNo" id="currentPageNo" value="${pagerMap['currentPageNo']}">
 	
 							<!-- 검색창 화면 -->
 							<div class="search-wrap">
-								<label for="search" class="blind">영업대상 검색</label> <input
-									type="text" name="bTarget" id="search"
-									placeholder="영업대상을 입력해주세요" value="${searchVO.bTarget}" />
+								<label for="search" class="blind">영업대상 검색</label> <input type="text" name="bTarget" id="search" placeholder="영업대상을 입력해주세요" value="${searchVO.bTarget}" />
 								<button type="button" class="btn btn-dark" onclick="searchBtn();">검색</button>
 							</div>
 						</form>
 					</div>
 					<div>
-						<input type="button" class="writeBtn" name="writeBtn" id="writeBtn"
-							onclick="businessRegist();" value="글쓰기">
+						<input type="button" class="writeBtn" name="writeBtn" id="writeBtn" onclick="businessRegist();" value="글쓰기">
 					</div>
 				</div>
 			</div>

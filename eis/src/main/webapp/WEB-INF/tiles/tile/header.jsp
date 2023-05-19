@@ -85,9 +85,9 @@
 				<div class="eis_main">
 					<ul class="naviBar">
 						<li><a href="#">공지사항</a></li>
-						<li><a href="#">회사영업</a></li>
+						<li><a href="/business/listBusiness">회사영업</a></li>
 						<li><a href="#">업무관리</a></li>
-						<li><a href="#">프로젝트</a></li>
+						<li><a href="/project/listProject">프로젝트</a></li>
 						<li><a href="#">커뮤니티</a></li>
 					</ul>
 				</div>

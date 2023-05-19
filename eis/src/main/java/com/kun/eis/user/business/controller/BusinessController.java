@@ -127,7 +127,7 @@ public class BusinessController {
 	// 글쓰기 페이지 이동
 	@RequestMapping("/registBusiness")
 	public String registBusiness(@ModelAttribute("vo") BusinessVO vo, Model model, HttpSession session) {
-
+/*
 		String url = "";
 
 		MemberVO userInfoVo = (MemberVO) session.getAttribute("userInfo");
@@ -140,8 +140,8 @@ public class BusinessController {
 			// 로그인 정보가 있을경우
 			url = "/user/business/registBusiness.tiles";
 		}
-
-		return url;
+*/
+		return "/user/business/registBusiness.tiles";
 	}
 
 	// 글 상세 페이지 이동
