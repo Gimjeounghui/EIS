@@ -29,6 +29,12 @@ public class BusinessController {
 	private BusinessService businessService;
 
 	@RequestMapping(value = "/listBusiness")
+	/** searchVO : model값에 담지 않아도 jsp에서 사용할 수 있도록 설정
+	
+	 * @ModelAttribute("searchVO") BusinessVO vo BusinessVO 객체에 담긴 변수들과 이름이 맞다면 자동으로
+	 * setter를 통해 값들을 담아주고 마지막에 model.addAttribute를 따로 할 필요없이 자동으로 view단으로 넘겨주게 된다.
+	 */
+	
 	public String listBusiness(@ModelAttribute("searchVO") BusinessVO vo, Model model, HttpSession session) {
 
 		// 게시판 UTIL
@@ -40,10 +46,10 @@ public class BusinessController {
 			/**
 			 * 게시판 기능
 			 */
-			int totalRecordCount = 0; // 총 게시물 건수
-			int currentPageNo = vo.getCurrentPageNo(); // 현재 클릭한 page번호
-			int pageSize = vo.getPageSize(); // 페이지 리스트에 게시되는 페이지 건수
-			int recordCountPerPage = vo.getRecordCountPerPage(); // 한 페이지당 게시되는 게시물 건 수
+			int totalRecordCount = 0; 								// 총 게시물 건수
+			int currentPageNo = vo.getCurrentPageNo(); 				// 현재 클릭한 page번호
+			int pageSize = vo.getPageSize(); 						// 페이지 리스트에 게시되는 페이지 건수
+			int recordCountPerPage = vo.getRecordCountPerPage();	// 한 페이지당 게시되는 게시물 건 수
 
 			// 게시물 조회 범위 연산
 			HashMap<String, Integer> rangeMap = boardUtil.calcDataRange(currentPageNo, recordCountPerPage);
@@ -59,16 +65,19 @@ public class BusinessController {
 				totalRecordCount = listBusiness.get(0).getTotalRecordCount();
 			}
 
+			/** HashMap : 중복과 순서가 허용되지 않고, null 허용
+				현재페이지 페이지에서 보여주는 게시물 수
+			*/
+			
 			// pager기능 모든 계산식 결과 정보 map에 담기
-			HashMap<String, Integer> pagerMap = boardUtil.calcBoardPagerElement(currentPageNo, totalRecordCount,
-					recordCountPerPage, pageSize);
+			HashMap<String, Integer> pagerMap = boardUtil.calcBoardPagerElement(currentPageNo, totalRecordCount, recordCountPerPage, pageSize);
 			/**
 			 * 게시판 END
 			 */
 
 			// model 세팅
-			model.addAttribute("listBusiness", listBusiness); // 검색한 list정보
-			model.addAttribute("pagerMap", pagerMap); // 게시판 계산식 map
+			model.addAttribute("listBusiness", listBusiness);	// 검색한 list정보
+			model.addAttribute("pagerMap", pagerMap); 			// 게시판 계산식 map
 
 		} catch (Exception e) {
 
@@ -127,7 +136,7 @@ public class BusinessController {
 	// 글쓰기 페이지 이동
 	@RequestMapping("/registBusiness")
 	public String registBusiness(@ModelAttribute("vo") BusinessVO vo, Model model, HttpSession session) {
-/*
+		/*
 		String url = "";
 
 		MemberVO userInfoVo = (MemberVO) session.getAttribute("userInfo");
@@ -140,7 +149,7 @@ public class BusinessController {
 			// 로그인 정보가 있을경우
 			url = "/user/business/registBusiness.tiles";
 		}
-*/
+		 */
 		return "/user/business/registBusiness.tiles";
 	}
 
@@ -168,8 +177,7 @@ public class BusinessController {
 	 */
 	@RequestMapping(value = "/procManageBusiness.json")
 	@ResponseBody
-	public Object procManagePrdct(@ModelAttribute("vo") BusinessVO vo, Model model, HttpSession session)
-			throws Exception {
+	public Object procManagePrdct(@ModelAttribute("vo") BusinessVO vo, Model model, HttpSession session) throws Exception {
 
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		boolean rstFlag = false;

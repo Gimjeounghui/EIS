@@ -19,17 +19,17 @@ public class BoardUtil {
 	 * pageSize = 페이지 리스트에 게시되는 페이지 건수
 	 * totalRecordCount = 전체 게시물 건 수
 	 */
-	public HashMap<String, Integer> calcBoardPagerElement(int curPageNo, int totalRecordCount, int recordCountPerPage, int pageSize){
+	public HashMap<String, Integer> calcBoardPagerElement(int curPageNo, int totalRecordCount, int recordCountPerPage, int pageSize) {
 		int currentPageNo = curPageNo<=1 ? 1 : curPageNo;
 		recordCountPerPage = recordCountPerPage < 1 ? defaultRecordCountPerPage : recordCountPerPage;
 		pageSize = pageSize < 1 ? defaultPageSize : pageSize;
 
 		logger.debug("- - - in calcBoardPagerElement - - -");
 		logger.debug("- - - INPUT - - - ");
-		logger.debug("현재 페이지 currentPageNo = "+currentPageNo);
-		logger.debug("한 페이지당 게시되는 게시물 건 수 recordCountPerPage = "+recordCountPerPage);
-		logger.debug("페이지 리스트에 게시되는 페이지 건수 pageSize = "+pageSize);
-		logger.debug("전체 게시물 건 수 totalRecordCount = "+totalRecordCount);
+		logger.debug("현재 페이지 currentPageNo = "+ currentPageNo);
+		logger.debug("한 페이지당 게시되는 게시물 건 수 recordCountPerPage = "+ recordCountPerPage);
+		logger.debug("페이지 리스트에 게시되는 페이지 건수 pageSize = "+ pageSize);
+		logger.debug("전체 게시물 건 수 totalRecordCount = "+ totalRecordCount);
 
 		// 페이지 개수
 		int totalPageCount = ((totalRecordCount-1)/recordCountPerPage) + 1;
@@ -38,18 +38,19 @@ public class BoardUtil {
 		int firstPageNoOnPageList = ((currentPageNo-1)/pageSize)*pageSize + 1;
 
 		// 페이지 리스트의 마지막 페이지 번호
-		int lastPageNoOnPageList = firstPageNoOnPageList+pageSize-1;
+		int lastPageNoOnPageList = firstPageNoOnPageList+pageSize - 1;
 
 		// 이전 페이지
-		int prevPageNoOnPageList = firstPageNoOnPageList-1<1 ? 1 : firstPageNoOnPageList-1;
+        // 삼항연산식을 통해 식의 값이 true 일 때 왼쪽(if), false 일 때 오른쪽(else)
+		int prevPageNoOnPageList = firstPageNoOnPageList -1 < 1 ? 1 : firstPageNoOnPageList - 1;
 
 		// 다음 페이지
-		int nextPageNoOnPageList = lastPageNoOnPageList+1;
+		int nextPageNoOnPageList = lastPageNoOnPageList + 1;
 
 		// 페이지 리스트의 마지막 페이지 번호가 전체 페이지 수보다 큰지 체크
 		logger.debug("");
 		logger.debug("페이지 리스트의 마지막 페이지 번호가 전체 페이지 수보다 큰지 체크");
-		logger.debug(lastPageNoOnPageList+" > "+totalPageCount);
+		logger.debug(lastPageNoOnPageList+" > " + totalPageCount);
 		logger.debug("");
 
 		if(lastPageNoOnPageList > totalPageCount) {
@@ -60,11 +61,11 @@ public class BoardUtil {
 
 		logger.debug("  ");
 		logger.debug("- - -  OUTPUT - - - ");
-		logger.debug("총 페이지 개수 totalPageCount = "+totalPageCount);
-		logger.debug("페이지 리스트의 첫 페이지 번호 firstPageNoOnPageList = "+firstPageNoOnPageList);
-		logger.debug("페이지 리스트의 마지막 페이지 번호 lastPageNoOnPageList = "+lastPageNoOnPageList);
-		logger.debug("이전 페이지 번호 prevPageNoOnPageList = "+prevPageNoOnPageList);
-		logger.debug("다음 페이지 번호 nextPageNoOnPageList = "+nextPageNoOnPageList);
+		logger.debug("총 페이지 개수 totalPageCount = " + totalPageCount);
+		logger.debug("페이지 리스트의 첫 페이지 번호 firstPageNoOnPageList = " + firstPageNoOnPageList);
+		logger.debug("페이지 리스트의 마지막 페이지 번호 lastPageNoOnPageList = " + lastPageNoOnPageList);
+		logger.debug("이전 페이지 번호 prevPageNoOnPageList = " + prevPageNoOnPageList);
+		logger.debug("다음 페이지 번호 nextPageNoOnPageList = " + nextPageNoOnPageList);
 
 		HashMap<String, Integer> returnMap = new HashMap<String, Integer>();
 
@@ -77,8 +78,8 @@ public class BoardUtil {
 		returnMap.put("lastPageNoOnPageList", lastPageNoOnPageList);
 		returnMap.put("prevPageNoOnPageList", prevPageNoOnPageList);
 		returnMap.put("nextPageNoOnPageList", nextPageNoOnPageList);
-		returnMap.put("startPageNoOnPageList", 1); //처음 페이지
-		returnMap.put("endPageNoOnPageList", totalPageCount); //끝 페이지
+		returnMap.put("startPageNoOnPageList", 1); 				// 처음 페이지
+		returnMap.put("endPageNoOnPageList", totalPageCount);	// 끝 페이지
 
 		return returnMap;
 	}
