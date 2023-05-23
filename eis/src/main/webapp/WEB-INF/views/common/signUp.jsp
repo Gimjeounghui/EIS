@@ -11,19 +11,18 @@
 	</script>
 
 	<body>
-<h1>Login</h1>
-<form action="memberLogin" method="post">
-    <label for="m_email">Email:</label>
-    <input type="text" id="m_email" name="m_email"><br>
-
-    <label for="m_pw">Password:</label>
-    <input type="password" id="m_pw" name="m_pw"><br>
-
-    <input type="submit" value="Login">
-</form>
-
-<br>
-
-<a href="singUp">회원가입</a>
-<a href="forget_pw">비밀번호 찾기</a>
+<body>
+    <h1>회원 가입</h1>
+    <form action="/member/formMember" method="post">
+        <label for="email">이메일:</label>
+        <input type="email" id="email" name="mEmail" required><br>
+        <label for="name">이름:</label>
+        <input type="text" id="name" name="mName" required><br>
+        <label for="pw">비밀번호:</label>
+        <input type="password" id="pw" name="mPw" required><br>
+        <label for="phone">전화번호:</label>
+        <input type="tel" id="phone" name="mPhone" required><br>
+        <input type="submit" value="가입하기">
+    </form>
+</body>
 </body>

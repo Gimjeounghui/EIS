@@ -16,16 +16,17 @@
 <form action="/member/loginMember" method="post">
     <label for="email">Email:</label>
     <input type="text" id="email" name="mEmail"><br>
+
     <label for="pw">Password:</label>
-    <input type="password" id="pw" name="mPw"><br>
+    <input type="password" id="pwd" name="mPw"><br>
 
     <input type="submit" value="Login">
 </form>
 
 <br>
 
-<a href="singUp">회원가입</a>
-<a href="forget_pw">비밀번호 찾기</a>
+<a href="/member/signUp">회원가입</a>
+<a href="main">비밀번호 찾기</a>
 </body>
 	<p>
 		<strong>회원가입 후 관리자의 승인완료 시 접속가능 하도록 구현</strong>

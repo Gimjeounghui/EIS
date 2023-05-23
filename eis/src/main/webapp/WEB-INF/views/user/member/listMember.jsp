@@ -73,19 +73,26 @@
 		$form.submit();
 	}
 
-	function modifyMember() {
-		location.href = '/member/modifyMember';
+	function modPage() {
+		
+		var $form = $('#modifyForm');
+		$form.attr('action','/member/modifyMember');
+		$form.submit();
 	}
-
+	
 	function detailMember(key) {
 		/* 글 상세페이지로 이동 */
 
-		$("#bNo").val(key);
-
+		$("#mEmail").val(key);
 		var $form = $('#detailForm');
 		$form.attr('action', '/member/detailMember');
 		$form.submit();
+		
 	}
+	
+	
+	
+	
 </script>
 <body>
 	<section class="notice">
@@ -122,7 +129,7 @@
 
 		<!-- 게시판 상세화면을 가기 위한 form -->
 		<form name="detailForm" id="detailForm" method="get">
-			<input type="hidden" name="name" id="name" value="" />
+			<input type="hidden" name="mEmail" id="mEmail" value="" />
 		</form>
 
 		<!-- 게시판 목록 화면 -->
@@ -135,7 +142,7 @@
 							<th scope="col" class="name">이름</th>
 							<th scope="col" class="pw">PW</th>
 							<th scope="col" class="phone">핸드폰</th>
-					<!-- 		<th scope="col" class="created_ate">가입일</th> -->
+							<th scope="col" class="createdate">가입일</th> 
 						</tr>
 					</thead>
 					<tbody>
@@ -152,7 +159,7 @@
 								<td>${list.mName}</td>
 								<td>${list.mPw}</td>
 								<td>${list.mPhone}</td>
-								<%-- <td>${list.mCreated_ate()}</td> --%>
+								<td>${list.mCreatedate}</td> 
 							</tr>
 						</c:forEach>
 					</tbody>

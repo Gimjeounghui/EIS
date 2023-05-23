@@ -27,25 +27,31 @@ import java.util.List;
 @RequestMapping("/member")
 public class MemberController {
 
-	/**
-	 * 23.04.28 Member, memberInsert,forget_pw registMember, listMember,
-	 * detailMember, updateMember, deleteMember 추가
-	 */
 
 	/**
-	 * 23.04.28
-	 * 
 	 * @Autowired private MemberService memberService;
-	 * 
+	 *
+	 *            23.04.28 Member, insertMember, forget_pw, registMember, listMember
+	 *            		   detailMember, updateMember, deleteMember 추가
+	 *            
 	 *            23.05.17 listMember 추가
 	 * 
 	 *            23.05.18 goLogin, login 추가
+	 *            
+	 *            23.05.22 listMember 수정 완료
+	 *            
+	 *            23.05.23 detailMember, updateMember, modifyMember 추가
 	 */
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
 	@Autowired
 	private MemberService memberService;
 
+	
+	/**
+	 * 23.05.22
+	 * listMember 수정 완료 
+	 */	
 	@RequestMapping(value = "/listMember")
 	public String listMember(@ModelAttribute("searchVO") MemberVO vo, Model model, HttpSession session) {
 
@@ -70,14 +76,7 @@ public class MemberController {
 
 			// 전체 검색 결과
 			listMember = memberService.selectListMember(vo);
-			System.out.println("listMember 데이터: " + listMember);
-
-			System.out.println("listMember 데이터:");
-			for (MemberVO member : listMember) {
-				System.out.println("이메일: " + member.getmEmail());
-				System.out.println("이름: " + member.getmName());
-			}
-
+				
 			// 검색된 결과가 있는지 체크
 			if (listMember.size() > 0) { // listMember의 데이터가 존재할 때
 				// 전체 검색 결과 게시물 건 수
@@ -105,8 +104,6 @@ public class MemberController {
 	}
 	
 	
-	
-	
 	@RequestMapping("/loginMember")
 	public String loginMember(@ModelAttribute("MemberVO") MemberVO vo, Model model, HttpSession session,
 			HttpServletRequest request) {
@@ -115,22 +112,14 @@ public class MemberController {
 		String email = request.getParameter("mEmail");
 		String password = request.getParameter("mPw");
 
-		/*
-		 * MemberVO RsltVO = (MemberVO) session.getAttribute("vo");
-		 *
-		 */
-
 		int isLogin = memberService.isLogin(vo);
-
+		MemberVO member = memberService.login(vo);
+		
 		if (isLogin == 0) { // 로그인에 실패 했을 경우
 			model.addAttribute("msg", "아이디 또는 비밀번호가 일치하지 않습니다.");
 			model.addAttribute("msg2", "입력하신 내용을 다시 확인해주세요.");
 			return "/common/index";
 		} else {  			// 로그인에 성공 했을 경우 
-			
-			
-			
-			MemberVO member = memberService.login(vo);
 			session.setAttribute("vo", member);
 			session.setMaxInactiveInterval(-1);
 	
@@ -140,6 +129,7 @@ public class MemberController {
 		return "/common/main";
 	}
 
+	
 	@RequestMapping("/signUp")
 	public String signUpMember() {
 
@@ -166,7 +156,7 @@ public class MemberController {
 		return "/common/index";
 	}
 
-	/*
+	/**
 	 * listMember ver1
 	 * 
 	 * @RequestMapping("/listMember") public String
@@ -174,34 +164,52 @@ public class MemberController {
 	 * session) { return "listMember"; }
 	 */
 
-	@RequestMapping("/datailMember")
-	public String detailMember(@ModelAttribute("MemberVO") MemberVO vo, Model model, HttpSession session,
-			@RequestParam("mEmail") String mEmail) {
-		model.addAttribute("MemberVO", vo);
-
-		return "/member/detailMember";
+	
+	/**
+	 * 23.05.23
+	 * detailMember // 수정 완료
+	 */
+	@RequestMapping("/detailMember")
+	public String detailMember(@ModelAttribute("vo") MemberVO vo, Model model, HttpSession session) {
+		
+		MemberVO mVO = null;
+		
+		mVO = memberService.detailMember(vo);
+		
+		model.addAttribute("mVO", mVO);	
+	
+		return "/user/member/detailMember.tiles";
 	}
 
 	
+	
+	/**
+	 * 23.05.23
+	 * updateMember 시작
+	 */
 	@Transactional
 	@RequestMapping("/updateMember") // MemberVO에 mPhoto 추가 후 수정 - 완료
 	public String updateMember(@ModelAttribute("MemberVO") MemberVO vo, Model model, HttpSession session_a,
-			@RequestParam("mPhoto1") MultipartFile mPhoto, RedirectAttributes ra, HttpServletRequest request) {
+			 RedirectAttributes ra, HttpServletRequest request) {
 
 		session_a.invalidate();
 		HttpSession session = request.getSession();
-		boolean a = memberService.updateMember(vo, mPhoto);
+		boolean a = memberService.updateMember(vo);
 		MemberVO member = vo;
-		session.setAttribute("member", member);
+		session.setAttribute("mVO", member);
 		ra.addAttribute("mEmail", vo.getmEmail());
 
 		/**
 		 * 23.04.28 info = 멤버정보(M_info) / 마이페이지(M_page) 네이밍은 차후 변경 가능
 		 */
 
-		return "redirect:/info";
+		return "/user/member/listMember.tiles";
 	}
 	
+	/**
+	 * detailMember 제작 예정
+	 */
+
 	@Transactional
 	@RequestMapping("/deleteMember")
 	public String deleteMember(@RequestParam("mEmail") String mEmail, RedirectAttributes ra, HttpSession session) {
@@ -219,19 +227,25 @@ public class MemberController {
 		return "redirect:/goLogin";
 	}
 
+	
+	
+	/**
+	 * 23.05.23
+	 * modifyMember // 수정 완료
+	 */
 	// 글 수정 페이지 이동
 	@RequestMapping("/modifyMember")
-	public String modifyMember(@ModelAttribute("MemberVO") MemberVO vo, Model model, HttpSession session) {
+	public String modifyMember(@ModelAttribute("vo") MemberVO vo, Model model, HttpSession session) {
 
 		// 디버깅 하기 위한 임의코드 작성
 		System.out.println("@@@@");
 
-		MemberVO vo1 = null;
+		MemberVO mVO = null;
 
-		vo1 = memberService.detailMember(vo);
-		model.addAttribute("vo1", vo1);
+		mVO = memberService.detailMember(vo);
+		model.addAttribute("mVO", mVO);
 
-		return "/member/modifyMember.tiles";
+		return "/user/member/modifyMember.tiles";
 	}
 
 }

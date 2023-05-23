@@ -2,43 +2,56 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.kun.eis.user.business.service.BusinessMapper">
+<mapper namespace="com.kun.eis.user.work.service.WorkMapper">
     
     <!-- 업무 리스트 쿼리 -->
-    <select id="selectWorkList" resultType="workVO" parameterType="workVO">
-    
-    	SELECT 	  w_no
-    			, w_title
-    			, w_content
-    			, w_file
-    			, w_file_path
-    			, w_created_ate
-    			, w_updated_ate
-    			, w_deleted_ate
-    			, m_email
-    	
+    <select id="selectWorkList" resultType="workVO" parameterType="workVO">  
+    	SELECT 	*	
     	FROM WORK		
-    
     </select>
-    <select id="workList">
+    
+    <insert id="registWork" parameterType="workVO">
+      insert into Work (`w_title`,
+						`w_content`,
+						`w_file`,
+						`w_file_path`,
+						`w_created_ate`,
+						`w_updated_ate`,
+						`w_deleted_ate`,
+						`m_email`)
+						VALUES
+						(#{wTitle},
+						#{wContent},
+						#{wFile},
+						#{wFilePath},
+						#{wCreatedate},
+						#{wUpdatedate},
+						#{wDeletedate},
+						#{mEmail});
+    </insert>  
+    
+    <select id="listWork" parameterType="workVO">
    		 select *
    		 from WORK 
     </select>
 
-	<select id="workDetail" resultType="WorkVO">
-		select *
-		from WORK
-		where w_no = #{w_no} 
+	<select id="detailWork" resultType="workVO" parameterType="workVO">
+		SELECT *
+		FROM WORK
+		WHERE w_no = #{w_no} 
 	</select>
 	
-	<update id="workUpdate">
-		update WORK
-		set w_title = #{w_title}, w_content = #{w_content}
-		where w_no = #{w_no} </update>
+	<update id="updateWork" parameterType="workVO">
+		UPDATE WORK
+		SET w_title = #{w_title}, w_content = #{w_content}
+		WHERE w_no = #{w_no} 
+	</update>
 	
-	<delete id="workDelete">
-		delete from WORK
-		where w_no = #{w_no} 
+	<delete id="deleteWork" parameterType="workVO">
+		DELETE
+		FROM WORK
+		WHERE w_no = #{w_no} 
 	</delete>
+	
 
 </mapper>

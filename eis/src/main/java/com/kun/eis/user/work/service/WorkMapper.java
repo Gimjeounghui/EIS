@@ -11,12 +11,12 @@ public interface WorkMapper {
 
 	public List<WorkVO> selectWorkList(WorkVO vo);
 	
-	public boolean workRegist(WorkVO vo); //등록
+	public boolean registWork(WorkVO vo); //등록
 
-	public WorkVO workDetail(int w_no); //상세조회
+	public WorkVO detailWork(int wNo); //상세조회
 	
-	public boolean workUpdate(WorkVO vo); //수정
+	public boolean updateWork(WorkVO vo); //수정
 
-	public boolean workDelete(int w_no); //삭제
+	public boolean deleteWork(int wNo); //삭제
 
 }

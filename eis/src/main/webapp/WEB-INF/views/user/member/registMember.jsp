@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>회원 가입</h1>
-    <form action="/memberForm" method="post">
+    <form action="/formMember" method="post">
         <label for="email">이메일:</label>
         <input type="email" id="mEmail" name="mEmail" required><br>
         <label for="name">이름:</label>
@@ -21,3 +21,8 @@
     </form>
 </body>
 </html>
+
+
+<!-- 회원가입은 common의 SignUp에서 진행 중 	 
+	 현재는 테스트용이며 쓰이지 않는 jsp 
+-->

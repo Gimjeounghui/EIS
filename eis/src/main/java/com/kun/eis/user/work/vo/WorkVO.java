@@ -1,61 +1,74 @@
 package com.kun.eis.user.work.vo;
 
 
-import java.time.LocalDateTime;
 
 import com.kun.eis.common.vo.DefaultVO;
 
 public class WorkVO extends DefaultVO {
  
-	private int w_no;
-    private String m_email;
-    private String w_title;
-    private String w_contents;
-    private LocalDateTime w_created_ate;
-    private LocalDateTime w_updated_ate;
-    private LocalDateTime w_deleted_ate;
+	private int wNo;
+    private String mEmail;
+    private String wTitle;
+    private String wContents;
+    private String wFile ;
+    private String wFilePath ;
+    private String wCreatedate;
+    private String wUpdatedate;
+    private String wDeletedate;
+	
+    public int getwNo() {
+		return wNo;
+	}
+	public void setwNo(int wNo) {
+		this.wNo = wNo;
+	}
+	public String getmEmail() {
+		return mEmail;
+	}
+	public void setmEmail(String mEmail) {
+		this.mEmail = mEmail;
+	}
+	public String getwTitle() {
+		return wTitle;
+	}
+	public void setwTitle(String wTitle) {
+		this.wTitle = wTitle;
+	}
+	public String getwContents() {
+		return wContents;
+	}
+	public void setwContents(String wContents) {
+		this.wContents = wContents;
+	}
+	public String getwFile() {
+		return wFile;
+	}
+	public void setwFile(String wFile) {
+		this.wFile = wFile;
+	}
+	public String getwFilePath() {
+		return wFilePath;
+	}
+	public void setwFilePath(String wFilePath) {
+		this.wFilePath = wFilePath;
+	}
+	public String getwCreatedate() {
+		return wCreatedate;
+	}
+	public void setwCreatedate(String wCreatedate) {
+		this.wCreatedate = wCreatedate;
+	}
+	public String getwUpdatedate() {
+		return wUpdatedate;
+	}
+	public void setwUpdatedate(String wUpdatedate) {
+		this.wUpdatedate = wUpdatedate;
+	}
+	public String getwDeletedate() {
+		return wDeletedate;
+	}
+	public void setwDeletedate(String wDeletedate) {
+		this.wDeletedate = wDeletedate;
+	}
     
-    public int getW_no() {
-		return w_no;
-	}
-	public void setW_no(int w_no) {
-		this.w_no = w_no;
-	}
-	public String getM_email() {
-		return m_email;
-	}
-	public void setM_email(String m_email) {
-		this.m_email = m_email;
-	}
-	public String getW_title() {
-		return w_title;
-	}
-	public void setW_title(String w_title) {
-		this.w_title = w_title;
-	}
-	public String getW_contents() {
-		return w_contents;
-	}
-	public void setW_contents(String w_contents) {
-		this.w_contents = w_contents;
-	}
-	public LocalDateTime getW_created_ate() {
-		return w_created_ate;
-	}
-	public void setW_created_ate(LocalDateTime w_created_ate) {
-		this.w_created_ate = w_created_ate;
-	}
-	public LocalDateTime getW_updated_ate() {
-		return w_updated_ate;
-	}
-	public void setW_updated_ate(LocalDateTime w_updated_ate) {
-		this.w_updated_ate = w_updated_ate;
-	}
-	public LocalDateTime getW_deleted_ate() {
-		return w_deleted_ate;
-	}
-	public void setW_deleted_ate(LocalDateTime w_deleted_ate) {
-		this.w_deleted_ate = w_deleted_ate;
-	}
-
 }

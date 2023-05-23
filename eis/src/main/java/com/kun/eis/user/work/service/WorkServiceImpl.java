@@ -19,23 +19,23 @@ public class WorkServiceImpl implements WorkService {
 	}
 	
 	@Override
-	public boolean workRegist(WorkVO vo) {
-		return workMapper.workRegist(vo);
+	public boolean registWork(WorkVO vo) {
+		return workMapper.registWork(vo);
 	}
 
 	@Override
-	public WorkVO workDetail(int w_no) {
-		return workMapper.workDetail(w_no);
+	public WorkVO detailWork(int wNo) {
+		return workMapper.detailWork(wNo);
 	}
 
 	@Override
-	public boolean workUpdate(WorkVO vo) {
-		return workMapper.workUpdate(vo);
+	public boolean updateWork(WorkVO vo) {
+		return workMapper.updateWork(vo);
 	}
 
 	@Override
-	public boolean workDelete(int w_no) {
-		return workMapper.workDelete(w_no);
+	public boolean deleteWork(int wNo) {
+		return workMapper.deleteWork(wNo);
 	}
 
 }

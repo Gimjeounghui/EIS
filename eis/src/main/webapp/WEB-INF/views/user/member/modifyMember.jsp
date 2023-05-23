@@ -77,46 +77,17 @@
 	
 		let letEditor;
 		
-		$(function() {
-		
-		});
-		
-		window.onload = function() {
-			
-			/* ck에디터 필수 스크립트 시작 */
-			ClassicEditor
-				.create(document.querySelector( '#sharingRegistCk' ), {
-			    	language: 'ko',
-			    	simpleUpload: {
-	                    uploadUrl: "/ckImageUploadUtil/upload/image",
-	                    withCredentials: true,
-	                }
-			    	
-			  	})
-			  	.then( newEditor => {
-					letEditor = newEditor;
-			  	})
-			  	.catch( error => {
-			    	console.error( error );
-			  	});
-			/* ck에디터 필수 스크립트 끝*/
-			
-			letEditor.setData('<c:out value="${vo1.shContent}"/>'  );
-		}; 
-		
 		/* 수정 manage */
 		function modifyManage() {
 	
 			if(confirm('저장하시겠습니까?')) {
-				// ck에디터로 적용된 textarea 값을 가져와서 세팅.
-
 				var editorValue = letEditor.getData();
 
 				$('#sharingModifyCk').val(editorValue);
 				
 				$('#modifyForm').ajaxForm ({
 					
-					 url: "/sharing/procManageSharing.json"
+					 url: "/user/member/updateMember"
 					,enctype: "multipart/form-data"
 					,beforeSubmit: function() {
 						
@@ -124,7 +95,7 @@
 				
 					,success: function(data) {
 		
-						location.href="/member/listMember";
+						location.href="/member/listMember.tiles";
 					}
 					
 					,error: function(data) {
@@ -148,13 +119,12 @@
 			<div style="width: 1000px; margin: 30px auto;" class="">
 				<form name="modifyForm" id="modifyForm" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="procFlag" id="procFlag" value="MOD">
-					<input type="hidden" name="m_email" id="m_email" value="${vo1.m_email}">
+					<input type="hidden" name="mEmail" id="email" value="${mVO.mEmail}">
 					
-					<label>작성 이름 : ${vo1.m_name}  </label><br/>
-					<label>핸드폰 : <input type="tel" name="m_phone" id="m_phone" value=" ${vo1.m_phone}"/></label><br/>
-					<label>추가 : <input type="tel" name="m_phone" id="m_phone1" value="${vo1.m_phone}" /></label><br/>
-					<textarea name="shContent" id="sharingModifyCk" style="width:100%; height:400px;">
-					</textarea>
+					<label>작성 이름 : ${mVO.mEmail}  </label><br/>
+					<label>이름 : <input type="text" name="mName" id="name" value=" ${mVO.mName}"/></label><br/>
+					<label>비밀번호 : <input type="tel" name="mPw" id="pw" value=" ${mVO.mPw}"/></label><br/>
+					<label>핸드폰 : <input type="tel" name="mPhone" id="phone" value=" ${mVO.mPhone}"/></label><br/>
 					
 					<br>
 					<div class="btnArea">

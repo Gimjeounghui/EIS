@@ -29,11 +29,11 @@ public class MemberVO extends DefaultVO {
 
     private char mType;
 
-    private LocalDateTime mCreated_ate;
+    private String mCreatedate;
 
-    private LocalDateTime mUpdated_ate;
+    private String mUpdatedate;
     
-    private LocalDateTime mDeleted_ate;
+    private String mDeletedate;
 
 	public String getmEmail() {
 		return mEmail;
@@ -83,29 +83,31 @@ public class MemberVO extends DefaultVO {
 		this.mType = mType;
 	}
 
-	public LocalDateTime getmCreated_ate() {
-		return mCreated_ate;
+	public String getmCreatedate() {
+		return mCreatedate;
 	}
 
-	public void setmCreated_ate(LocalDateTime mCreated_ate) {
-		this.mCreated_ate = mCreated_ate;
+	public void setmCreatedate(String mCreatedate) {
+		this.mCreatedate = mCreatedate;
 	}
 
-	public LocalDateTime getmUpdated_ate() {
-		return mUpdated_ate;
+	public String getmUpdatedate() {
+		return mUpdatedate;
 	}
 
-	public void setmUpdated_ate(LocalDateTime mUpdated_ate) {
-		this.mUpdated_ate = mUpdated_ate;
+	public void setmUpdatedate(String mUpdatedate) {
+		this.mUpdatedate = mUpdatedate;
 	}
 
-	public LocalDateTime getmDeleted_ate() {
-		return mDeleted_ate;
+	public String getmDeletedate() {
+		return mDeletedate;
 	}
 
-	public void setmDeleted_ate(LocalDateTime mDeleted_ate) {
-		this.mDeleted_ate = mDeleted_ate;
+	public void setmDeletedate(String mDeletedate) {
+		this.mDeletedate = mDeletedate;
 	}
+
+
 
    
 }

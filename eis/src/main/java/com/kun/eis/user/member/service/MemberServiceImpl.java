@@ -37,9 +37,7 @@ public class MemberServiceImpl implements MemberService {
 	public List<MemberVO> testListMember(MemberVO vo) {
 		return memberMapper.testListMember(vo);
 	}
-	
-	
-	
+		
 	@Override
 	public List<MemberVO> selectListMember(MemberVO vo) {
 		return memberMapper.selectListMember(vo);
@@ -54,8 +52,6 @@ public class MemberServiceImpl implements MemberService {
 	public boolean registMember(MemberVO vo) {
 		return memberMapper.registMember(vo);
 	}
-
-
 
 	@Override
 	public MemberVO detailMember(MemberVO vo) {
@@ -81,22 +77,26 @@ public class MemberServiceImpl implements MemberService {
 	 * uploadPath 추가 예정
 	 * photo imagesave 위치 및 이름 변경 예정
 	 */
+	
+	
 	@Transactional
 	@Override
-	public boolean updateMember(MemberVO vo, MultipartFile mPhoto) {
-		boolean result = memberMapper.updateMember(vo);
-
-		String imageOrigin = mPhoto.getOriginalFilename();
-		String imageName = imageOrigin.substring(imageOrigin.lastIndexOf("/") + 1);
-		String uuid = UUID.randomUUID().toString();
-		if(imageName == null || imageName == "") {
-			uuid = null;
-		}
-		String m_imageName = uuid + "_" + imageName;
-		String imageSave = uploadPath + uuid + "_" + imageName;
-		if(imageName == null || imageName == "") {
-			imageSave = uploadPath + imageName;
-		}
+	public boolean updateMember(MemberVO vo){ 	 
+	  	return memberMapper.updateMember(vo);
+	}
+	/*
+	 * @Transactional
+	 * 
+	 * @Override public boolean updateMember(MemberVO vo, MultipartFile mPhoto) {
+	 * boolean result = memberMapper.updateMember(vo);
+	 * 
+	 * String imageOrigin = mPhoto.getOriginalFilename(); String imageName =
+	 * imageOrigin.substring(imageOrigin.lastIndexOf("/") + 1); String uuid =
+	 * UUID.randomUUID().toString(); if(imageName == null || imageName == "") { uuid
+	 * = null; } String m_imageName = uuid + "_" + imageName; String imageSave =
+	 * uploadPath + uuid + "_" + imageName; if(imageName == null || imageName == "")
+	 * { imageSave = uploadPath + imageName; }
+	 */
 
 
 		/*
@@ -127,9 +127,6 @@ public class MemberServiceImpl implements MemberService {
 		 * m_photo_path(uploadPath).m_email(vo.getM_email()).build());
 		 * vo.setM_photo_path(uploadPath); vo.setM_photo(m_imageName); }
 		 */
-
-		return result;
-	}
 
 	@Transactional
 	@Override

@@ -25,7 +25,7 @@ public interface MemberService {
 
 	public MemberVO detailMember(MemberVO vo);
 
-	public boolean updateMember(MemberVO vo, MultipartFile mPhoto);
+	public boolean updateMember(MemberVO vo);
 
 	public boolean deleteMember(String mEmail);
 

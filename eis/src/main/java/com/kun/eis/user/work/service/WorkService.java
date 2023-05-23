@@ -14,12 +14,12 @@ public interface WorkService {
 	 */
 	public List<WorkVO> selectWorkList(WorkVO vo);
 	
-	public boolean workRegist(WorkVO vo);
+	public boolean registWork(WorkVO vo);
 
-	public WorkVO workDetail(int w_no);
+	public WorkVO detailWork(int wNo);
 
-	public boolean workUpdate(WorkVO vo);
+	public boolean updateWork(WorkVO vo);
 
-	public boolean workDelete(int w_no);
+	public boolean deleteWork(int wNo);
 
 }

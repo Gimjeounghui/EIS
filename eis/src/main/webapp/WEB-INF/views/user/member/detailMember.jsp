@@ -89,25 +89,26 @@
 	
 		<!-- 게시판 수정화면을 가기 위한 form -->
 		<form name="modifyForm" id="modifyForm" method="get">
-			<input type="hidden" name="m_email" id="m_email" value="${vo1.m_email}" />
+			<input type="hidden" name="mEmail" id="mEmail" value="${mVO.mEmail}" />
 		</form>
 	
 		<div class="cont4_editor">
 			<div style="width: 1000px; margin: 30px auto;" class=""> 
 				
-				<label>작성 아이디 : ${vo1.m_email} </label><br/>
-				<label>대상 : <input type="text" value="${vo1.m_name}" readonly="readonly"/></label><br/>
-				<label>제목 : <input type="text" value="${vo1.m_pw}" readonly="readonly"/></label><br/>
-				<label>제목 : <input type="text" value="${vo1.m_phone}" readonly="readonly"/></label><br/>
-				<label>제목 : <input type="text" value="${vo1.m_created_ate}" readonly="readonly"/></label><br/>
+				<label>작성 아이디 : ${mVO.mEmail} </label><br/>
+				<label>이름 : <input type="text" value="${mVO.mName}" readonly="readonly"/></label><br/>
+				<label>비밀번호 : <input type="text" value="${mVO.mPw}" readonly="readonly"/></label><br/>
+				<label>핸드폰 : <input type="text" value="${mVO.mPhone}" readonly="readonly"/></label><br/>
+				<label>가입일 : <input type="text" value="${mVO.mCreatedate}" readonly="readonly"/></label><br/>
 				<br>
 				<div class="btnArea">
 					<button type="button" class="listBtn" id="listBtn" onclick="javascript:history.back();">목록</button>
 					<div class="space"></div>
+					<button type="button" class="modBtn" id="modBtn" onclick="modPage();">수정</button>
 					
-					<c:if test="${vo1.m_email eq sessionUid}">
+					<%-- <c:if test="${mVO.mEmail eq sessionUid}">
 						<button type="button" class="modBtn" id="modBtn" onclick="modPage();">수정</button>
-					</c:if>
+					</c:if> --%>
 				</div>
 			</div>
 		</div>
