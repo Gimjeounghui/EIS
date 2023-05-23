@@ -126,7 +126,8 @@ public class MemberController {
 		}
 
 		// 로그인 성공시 홈페이지로 리다이렉트
-		return "/common/main";
+		/* return "/common/main"; */
+		return "/user/member/listMember.tiles";
 	}
 
 	

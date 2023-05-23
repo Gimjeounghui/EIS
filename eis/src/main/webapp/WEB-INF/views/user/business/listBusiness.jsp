@@ -137,7 +137,7 @@
 							<tr>
 								<th scope="col" class="th-num">번호</th>
 								<th scope="col" class="th-title">대상</th>
-								<th scope="col" class="th-name">내용</th>
+								<th scope="col" class="th-name">제목</th>
 								<th scope="col" class="th-id">작성아이디</th>
 								<th scope="col" class="th-date">작성일</th>
 							</tr>
@@ -154,8 +154,8 @@
 									style="cursor: pointer;">
 									<td>${list.bNo}</td>
 									<td>${list.bTarget}</td>
-									<td>${list.bContent}</td>
-									<td>${list.m_email}</td>
+									<td>${list.bTitle}</td>
+									<td>${list.mEmail}</td>
 									<td>${list.bUpdatedAte}</td>
 								</tr>
 							</c:forEach>

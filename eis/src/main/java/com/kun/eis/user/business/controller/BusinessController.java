@@ -185,10 +185,10 @@ public class BusinessController {
 
 		// ADD:insert MOD:update DEL: delete
 		String procFlag = vo.getProcFlag();
-		MemberVO rsltUserInfoVO = (MemberVO) session.getAttribute("userInfo");
+		MemberVO rsltUserInfoVO = (MemberVO) session.getAttribute("vo");
 
 		/* 세션 정보 세팅 */
-		vo.setm_email(rsltUserInfoVO.getM_email());
+		vo.setmEmail(rsltUserInfoVO.getmEmail());
 
 		try {
 

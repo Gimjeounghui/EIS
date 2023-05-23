@@ -95,7 +95,7 @@
 		<div class="cont4_editor">
 			<div style="width: 1000px; margin: 30px auto;" class=""> 
 				
-				<label>작성 아이디 : ${rsltVO.m_email} </label><br/>
+				<label>작성 아이디 : ${rsltVO.mEmail} </label><br/>
 				<label>대상 : <input type="text" value="${rsltVO.bTarget}" readonly="readonly"/></label><br/>
 				<label>제목 : <input type="text" value="${rsltVO.bTitle}" readonly="readonly"/></label><br/>
 				
@@ -107,9 +107,9 @@
 					<button type="button" class="listBtn" id="listBtn" onclick="javascript:history.back();">목록</button>
 					<div class="space"></div>
 					
-					<c:if test="${rsltVO.m_email eq sessionUid}">
+					<%-- <c:if test="${rsltVO.mEmail eq sessionmEmail}"> --%>
 						<button type="button" class="modBtn" id="modBtn" onclick="modPage();">수정</button>
-					</c:if>
+					<%-- </c:if> --%>
 				</div>
 			</div>
 		</div>

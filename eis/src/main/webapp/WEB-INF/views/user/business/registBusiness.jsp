@@ -157,27 +157,30 @@
 			<div style="width: 1000px; margin: 30px auto;" class="">
 				<form name="registForm" id="registForm" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="procFlag" id="procFlag" value="ADD">
-<%-- 				
+ 				
 					<% 
-					SignUpVO rsltUserInfoVO = (SignUpVO)session.getAttribute("userInfo");
+					MemberVO rsltUserInfoVO = (MemberVO)session.getAttribute("vo");
 					pageContext.setAttribute("userinfo", rsltUserInfoVO); 
 					%>
- --%>	
+	
 					<!-- 아이디랑 작성자는 로그인 후 자동으로 나와야함 -->
-					<%-- <c:choose>
-						<c:when test="${empty userinfo}"> --%>
+					<c:choose>
+						<c:when test="${empty userinfo}">
 							<li><a style="color:#04a1a8; font-weight:bold; font-size:13px;">아이디정보 없음</a></li>
 							<li><a style="color:#04a1a8; font-weight:bold; font-size:13px;">이름정보 없음</a></li>
-					<%-- 	</c:when>
+					 	</c:when>
 						<c:otherwise>
-							<label>작성 아이디 : ${userinfo.uId} </label><br/>
+							<label>작성 아이디 : ${userinfo.mEmail} </label><br/>
 						</c:otherwise>
 					</c:choose>
 					
-					 --%>					
- 					<label>상품명 : <input type="text" name="shName" id="shName" /></label><br/>
-					<label>글제목 : <input type="text" name="shTitle" id="shTitle" /></label><br/>
-					<textarea name="shContent" id="sharingRegistCk" style="width:100%; height:400px;"></textarea>
+ 					<label>대상 : <input type="text" name="bTarget" id="bTarget" /></label><br/>
+					<label>제목 : <input type="text" name="bTitle" id="bTitle" /></label><br/>
+					<!-- <textarea name="shContent" id="sharingRegistCk" style="width:100%; height:400px;"></textarea> -->
+					
+					<div class="my-box" style="overflow:auto; padding: 12px; border: 1px solid #dee2e6; border-radius: 5px; margin-top: 12px; height:400px;">
+						<textarea name="bContent" id="bContent" style="width:100%; height:400px;"></textarea>
+					</div>
 					
 					<br>
 					<div class="btnArea">

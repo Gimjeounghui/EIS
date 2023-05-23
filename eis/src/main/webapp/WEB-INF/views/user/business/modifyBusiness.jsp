@@ -73,76 +73,6 @@
 	 	
 	</style> 	
 	 		
-	<script type="text/javascript">
-	
-		let letEditor;
-		
-		$(function() {
-		
-		});
-		
-		window.onload = function() {
-			
-			/* ck에디터 필수 스크립트 시작 */
-			ClassicEditor
-				.create(document.querySelector( '#sharingRegistCk' ), {
-			    	language: 'ko',
-			    	simpleUpload: {
-	                    uploadUrl: "/ckImageUploadUtil/upload/image",
-	                    withCredentials: true,
-	                }
-			    	
-			  	})
-			  	.then( newEditor => {
-					letEditor = newEditor;
-			  	})
-			  	.catch( error => {
-			    	console.error( error );
-			  	});
-			/* ck에디터 필수 스크립트 끝*/
-			
-			letEditor.setData('<c:out value="${rsltVO.shContent}"/>'  );
-		}; 
-		
-		/* 수정 manage */
-		function modifyManage() {
-	
-			if(confirm('저장하시겠습니까?')) {
-				// ck에디터로 적용된 textarea 값을 가져와서 세팅.
-
-				var editorValue = letEditor.getData();
-
-				$('#sharingModifyCk').val(editorValue);
-				
-				$('#modifyForm').ajaxForm ({
-					
-					 url: "/sharing/procManageSharing.json"
-					,enctype: "multipart/form-data"
-					,beforeSubmit: function() {
-						
-					}
-				
-					,success: function(data) {
-		
-						location.href="/business/listBusiness";
-					}
-					
-					,error: function(data) {
-						//console.log(data);
-					}
-					
-					,complete: function(data) {
-						//
-						
-					}
-				});
-		
-				$('#modifyForm').submit();
-			}
-		}
-		
-	</script>
-	
 	<body>
 		<div class="cont4_editor">
 			<div style="width: 1000px; margin: 30px auto;" class="">
@@ -150,11 +80,15 @@
 					<input type="hidden" name="procFlag" id="procFlag" value="MOD">
 					<input type="hidden" name="bNo" id="bNo" value="${rsltVO.bNo}">
 					
-					<label>작성 아이디 : ${rsltVO.uId}  </label><br/>
-					<label>상품명 : <input type="text" name="shName" id="shName" value=" ${rsltVO.shName}"/></label><br/>
-					<label>글제목 : <input type="text" name="shTitle" id="shTitle" value="${rsltVO.shTitle}" /></label><br/>
-					<textarea name="shContent" id="sharingModifyCk" style="width:100%; height:400px;">
-					</textarea>
+					<label>작성 아이디 : ${rsltVO.mEmail}</label><br/>
+					<label>대상 : <input type="text" name="bTarget" id="bTarget" value=" ${rsltVO.bTarget}"/></label><br/>
+					<label>제목 : <input type="text" name="bTitle" id="bTitle" value="${rsltVO.bTitle}" /></label><br/>
+
+					<!-- <textarea name="shContent" id="sharingModifyCk" style="width:100%; height:400px;"> -->
+
+					<div class="my-box" style="overflow:auto; padding: 12px; border: 1px solid #dee2e6; border-radius: 5px; margin-top: 12px; height:400px;">
+						<textarea name="bContent" id="bContent" style="width:100%; height:400px;"></textarea>
+					</div>
 					
 					<br>
 					<div class="btnArea">
