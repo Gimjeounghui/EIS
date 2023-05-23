@@ -15,6 +15,8 @@ import java.util.List;
 
 public interface MemberService {
 
+	public List<MemberVO> testListMember(MemberVO vo);
+	
 	public List<MemberVO> selectListMember(MemberVO vo);
 
 	public MemberVO selectPwCode(MemberVO vo) throws Exception;
@@ -23,9 +25,9 @@ public interface MemberService {
 
 	public MemberVO detailMember(MemberVO vo);
 
-	public boolean updateMember(MemberVO vo, MultipartFile m_photo);
+	public boolean updateMember(MemberVO vo, MultipartFile mPhoto);
 
-	public boolean deleteMember(String m_email);
+	public boolean deleteMember(String mEmail);
 
 	public MemberVO login(MemberVO vo); 
 	

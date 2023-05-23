@@ -34,6 +34,13 @@ public class MemberServiceImpl implements MemberService {
 	String uploadPath;
 
 	@Override
+	public List<MemberVO> testListMember(MemberVO vo) {
+		return memberMapper.testListMember(vo);
+	}
+	
+	
+	
+	@Override
 	public List<MemberVO> selectListMember(MemberVO vo) {
 		return memberMapper.selectListMember(vo);
 	}
@@ -76,10 +83,10 @@ public class MemberServiceImpl implements MemberService {
 	 */
 	@Transactional
 	@Override
-	public boolean updateMember(MemberVO vo, MultipartFile m_photo) {
+	public boolean updateMember(MemberVO vo, MultipartFile mPhoto) {
 		boolean result = memberMapper.updateMember(vo);
 
-		String imageOrigin = m_photo.getOriginalFilename();
+		String imageOrigin = mPhoto.getOriginalFilename();
 		String imageName = imageOrigin.substring(imageOrigin.lastIndexOf("/") + 1);
 		String uuid = UUID.randomUUID().toString();
 		if(imageName == null || imageName == "") {
@@ -126,8 +133,8 @@ public class MemberServiceImpl implements MemberService {
 
 	@Transactional
 	@Override
-	public boolean deleteMember(String m_email) {
-		return memberMapper.deleteMember(m_email);
+	public boolean deleteMember(String mEmail) {
+		return memberMapper.deleteMember(mEmail);
 	}
 
 	@Transactional

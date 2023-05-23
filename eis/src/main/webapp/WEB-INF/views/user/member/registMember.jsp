@@ -8,15 +8,15 @@
 </head>
 <body>
     <h1>회원 가입</h1>
-    <form action="/eis/member/memberForm" method="post">
-        <label for="m_email">이메일:</label>
-        <input type="email" id="m_email" name="m_email" required><br>
-        <label for="m_name">이름:</label>
-        <input type="text" id="m_name" name="m_name" required><br>
-        <label for="m_pw">비밀번호:</label>
-        <input type="password" id="m_pw" name="m_pw" required><br>
-        <label for="m_phone">전화번호:</label>
-        <input type="tel" id="m_phone" name="m_phone" required><br>
+    <form action="/memberForm" method="post">
+        <label for="email">이메일:</label>
+        <input type="email" id="mEmail" name="mEmail" required><br>
+        <label for="name">이름:</label>
+        <input type="text" id="name" name="name" required><br>
+        <label for="pw">비밀번호:</label>
+        <input type="password" id="pw" name="pw" required><br>
+        <label for="phone">전화번호:</label>
+        <input type="tel" id="phone" name="phone" required><br>
         <input type="submit" value="가입하기">
     </form>
 </body>

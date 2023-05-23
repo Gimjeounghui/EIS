@@ -18,6 +18,8 @@ import java.util.List;
 
 @Mapper
 public interface MemberMapper {
+	
+	public List<MemberVO> testListMember(MemberVO vo);
 
 	public List<MemberVO> selectListMember(MemberVO vo);
 
@@ -25,7 +27,7 @@ public interface MemberMapper {
 
 	public boolean updateMember(MemberVO vo);
 
-	public boolean deleteMember(String m_email);
+	public boolean deleteMember(String mEmail);
 
 	public boolean registMember(MemberVO vo);
 

@@ -8,33 +8,34 @@ package com.kun.eis.user.member.vo;
  */
 public class MemberUploadVO {
 
-    private int m_upload_no;
-    private String m_email;
-    private String m_photo;
-    private String m_photo_path;
-	public int getM_upload_no() {
-		return m_upload_no;
-	}
-	public void setM_upload_no(int m_upload_no) {
-		this.m_upload_no = m_upload_no;
-	}
-	public String getM_email() {
-		return m_email;
-	}
-	public void setM_email(String m_email) {
-		this.m_email = m_email;
-	}
-	public String getM_photo() {
-		return m_photo;
-	}
-	public void setM_photo(String m_photo) {
-		this.m_photo = m_photo;
-	}
-	public String getM_photo_path() {
-		return m_photo_path;
-	}
-	public void setM_photo_path(String m_photo_path) {
-		this.m_photo_path = m_photo_path;
-	}
+	private int mUpload_no;
+    private String mEmail;
+    private String mPhoto;
+    private String mPhoto_path;
 
+    public int getmUpload_no() {
+		return mUpload_no;
+	}
+	public void setmUpload_no(int mUpload_no) {
+		this.mUpload_no = mUpload_no;
+	}
+	public String getmEmail() {
+		return mEmail;
+	}
+	public void setmEmail(String mEmail) {
+		this.mEmail = mEmail;
+	}
+	public String getmPhoto() {
+		return mPhoto;
+	}
+	public void setmPhoto(String mPhoto) {
+		this.mPhoto = mPhoto;
+	}
+	public String getmPhoto_path() {
+		return mPhoto_path;
+	}
+	public void setmPhoto_path(String mPhoto_path) {
+		this.mPhoto_path = mPhoto_path;
+	}
+	
 }

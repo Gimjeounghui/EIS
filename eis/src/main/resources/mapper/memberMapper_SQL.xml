@@ -3,137 +3,128 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.kun.eis.user.member.service.MemberMapper">
-    
-<select id="selectListMember" resultType="memberVO" parameterType="memberVO">
+	<select id="selectListMember" resultType="memberVO"	parameterType="memberVO">
 
-	SELECT
-	    BOARD2.*
-	FROM(
-	    SELECT
-	        COUNT(*) OVER() AS totalRecordCount,
-	        BOARD1.*
-	    FROM(
-		        SELECT
-				         ROW_NUMBER() OVER (ORDER BY m_created_ate DESC) AS rnum
-			    	
-			    		,m_email
-			    		,m_name
-			    		,m_pw
-			    		,m_phone
-			    		,m_permiss
-			    		,m_type
-			    		,m_created_ate
-		    			
-			    	FROM   MEMBER
+		SELECT
+		BOARD2.*
+		FROM(
+		SELECT
+		COUNT(*) OVER() AS totalRecordCount,
+		BOARD1.*
+		FROM(
+		SELECT
+		ROW_NUMBER() OVER (ORDER BY m_created_ate DESC) AS rnum
 
-				
-				 ) BOARD1
+		,m_email
+		,m_name
+		,m_pw
+		,m_phone
+		,m_created_ate
+
+
+		FROM MEMBER
+		) BOARD1
 		) BOARD2
-		WHERE	BOARD2.RNUM BETWEEN #{start} AND #{end}
-    
-    </select>
-    
-    <insert id="registMember" parameterType="memberVO">
-        insert into MEMBER (m_email, m_name, m_pw, m_phone)
-        values(#{m_email}, #{m_name}, #{m_pw}, #{m_phone})
-    </insert>
+		WHERE BOARD2.RNUM BETWEEN #{start} AND #{end}
 
-    <update id="updateMember" parameterType="memberVO">
-        update MEMBER
-        set m_photo = #{m_photo}
-        where m_email = #{m_email}
-    </update>
+	</select>
 
-    <delete id="deleteMember" parameterType="memberVO">
-        delete m, u from MEMBER m
-    	left join MEMBER_UPLOAD u
-    	on (m.m_email = u.m_email)
-  	    where m.m_email = #{m_email}
-    </delete>
+	<insert id="registMember" parameterType="memberVO">
+		insert into MEMBER (m_email, m_name, m_pw, m_phone, m_permiss, m_type,
+		m_created_ate, m_updated_ate, m_deleted_ate)
+		values(#{mEmail}, #{m_name}, #{m_pw}, #{m_phone}, 0, 0, NOW(), NOW(), NOW())
+	</insert>
 
-    <!--
-    23.05.09
-    memberImageInsert 수정
-    1차 - memberImageInsert
-    <insert id= "memberImageInsert">
-        <selectKey resultType = "String" keyProperty="m_email" order ="BEFORE">
-        select from member where m_email = #{m_email}
-        </selectKey>
-        insert into member_upload ( m_photo, m_photo_path, m_email)
-        values(#{m_photo},#{m_photo_path},#{m_email})
-    </insert>
-    -->
+	<update id="updateMember" parameterType="memberVO">
+		UPDATE MEMBER 
+		SET m_name = #{m_name}, m_phone = #{m_phone}, m_updated_ate = SYSDATE
+		WHERE m_email = dummy001@gmail.com
+	</update>
 
 
-    <insert id= "imageInsertMember" parameterType="memberVO">
-        <selectKey resultType = "String" keyProperty="m_email" order ="BEFORE">
-        select max(m_email) as m_email from MEMBER where m_email = #{m_email}
-        </selectKey>
-        insert into MEMBER_UPLOAD ( m_photo, m_photo_path, m_email)
-        values(#{m_photo},#{m_photo_path},#{m_email})
-    </insert>
+	<delete id="deleteMember" parameterType="memberVO">
+		delete m, u 
+		from MEMBER m left join MEMBER_UPLOAD u
+		on (m.m_email = u.m_email)
+		where m.m_email = #{mEmail}
+	</delete>
+
+	<!-- 23.05.09 memberImageInsert 수정 1차 - memberImageInsert 
+	<insert id= "memberImageInsert"> 
+	<selectKey resultType = "String" keyProperty="m_email" order ="BEFORE"> 
+	select 
+	from member 
+	where m_email = #{mEmail} 
+	</selectKey> 
+	insert into member_upload 
+		( m_photo, m_photo_path, m_email) values(#{m_photo},#{m_photo_path},#{mEmail}) 
+		</insert> -->
 
 
-    <update id="updateImgMember" parameterType="memberVO">
-        update MEMBER_UPLOAD set m_photo_path = #{m_photo_path},
-                               m_photo = #{m_photo}
-        where m_email = #{m_email}
-    </update>
+	<insert id="imageInsertMember" parameterType="memberVO">
+		<selectKey resultType="String" keyProperty="m_email" order="BEFORE">
+			select max(m_email) as m_email 
+			from MEMBER 
+			where m_email = #{mEmail}
+		</selectKey>
+		insert INTO MEMBER_UPLOAD ( m_photo, m_photo_path, m_email) 
+		values(#{m_photo},#{m_photo_path},#{mEmail})
+	</insert>
 
-    <update id="permissMember" parameterType="memberVO">
-        update MEMBER set m_permiss = #{m_permiss}
-        where m_email = #{m_email}
+	<update id="updateImgMember" parameterType="memberVO">
+		update MEMBER_UPLOAD set m_photo_path = #{m_photo_path},m_photo = #{m_photo}
+		where m_email = #{mEmail}
+	</update>
 
-    </update>
+	<update id="permissMember" parameterType="memberVO">
+		update MEMBER set m_permiss = #{m_permiss}
+		where m_email = #{mEmail}
 
-    <!--
-        23.05.04
-        memberDetail
-        workVO, projectVO 완성 후 Work, Project Join 예정
-        w_num, p_num 연결 예정
+	</update>
 
-        23.05.09
-        memberWork 생성, memberPorject .. 생성 완료
-    -->
-    <select id="detailMember" resultType="memberVO" parameterType="memberVO">
-        select m_name, m_photo
-        from MEMBER
-        where m_email = #{m_email}
-    </select>
+	<!-- 23.05.04 memberDetail workVO, projectVO 완성 후 Work, Project Join 예정 
+		w_num, p_num 연결 예정 23.05.09 memberWork 생성, memberPorject .. 생성 완료 -->
+	<select id="detailMember" resultType="memberVO"
+		parameterType="memberVO">
+		select m_name, m_phone
+		from MEMBER
+		where m_email = dummy001@gmail.com
+	</select>
 
-    <select id="workMember" resultType="memberVO" parameterType="memberVO">
-        select w_title
-        from MEMBER m INNER JOIN WORK w on (m.m_email = w.m_email)
-        where m_email = #{m_email}
-        order by w.w_created_ate
-        LIMIT 3
+	<select id="workMember" resultType="memberVO"
+parameterType="memberVO">
+		select w_title 
+		FROM MEMBER m INNER JOIN WORK w on (m.m_email = w.m_email)
+		WHERE m_email = #{mEmail}
+		order by w.w_created_ate
+		LIMIT 3
+	</select>
 
-    </select>
 
-    <select id="projectMember" resultType="memberVO" parameterType="memberVO">
-        SELECT p_title
-        FROM MEMBER m INNER JOIN PROJECT_EMPLOYEE p ON (m.m_email = p.m_email)
-        WHERE p.p_emp_no LIKE #{m_email}
-        ORDER BY p.p_emp_no
-        LIMIT 3
-    </select>
+	<select id="projectMember" resultType="memberVO" parameterType="memberVO">
+		SELECT p_title
+		FROM MEMBER m INNER JOIN PROJECT_EMPLOYEE p ON (m.m_email = p.m_email)
+		WHERE p.p_emp_no LIKE #{mEmail}
+		ORDER BY p.p_emp_no
+		LIMIT 3
+	</select>
 
-    <select id="emailCheck" resultType="int">
-        select count(*)
-        from MEMBER
-        where m_email = #{m_email}
-    </select>
+	<select id="emailCheck" resultType="int">
+		SELECT count(*)
+		FROM MEMBER
+		WHERE m_email = #{mEmail}
+	</select>
 
-    <select id="login" resultType="memberVO" parameterType="memberVO">
+	 <select id="login" resultType="memberVO" parameterType="memberVO">
         select m.m_email, m.m_name, m.m_pw, m_up.m_photo_path, m_up.m_photo
         from MEMBER m right join MEMBER_UPLOAD m_up on m.m_email = m_up.m_email
-        where m.m_email = #{m_email} and m.m_pw = #{m_pw}
+        where m.m_email = #{mEmail} and m.m_pw = #{mPw}
     </select>
 
-    <select id="isLogin" resultType="int">
-        select count(*)
-        from MEMBER
-        where m_email = #{m_email} and m_pw = #{m_pw}
-    </select>
+	<select id="isLogin" resultType="int">
+		SELECT count(*)
+		FROM MEMBER
+		WHERE m_email = #{mEmail} and m_pw = #{mPw}
+	</select>
 
 </mapper>
