@@ -15,8 +15,6 @@ import java.util.List;
 
 public interface MemberService {
 
-	public List<MemberVO> testListMember(MemberVO vo);
-	
 	public List<MemberVO> selectListMember(MemberVO vo);
 
 	public MemberVO selectPwCode(MemberVO vo) throws Exception;

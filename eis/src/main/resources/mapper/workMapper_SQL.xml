@@ -14,43 +14,32 @@
       insert into Work (`w_title`,
 						`w_content`,
 						`w_file`,
-						`w_file_path`,
 						`w_created_ate`,
-						`w_updated_ate`,
-						`w_deleted_ate`,
 						`m_email`)
 						VALUES
 						(#{wTitle},
 						#{wContent},
 						#{wFile},
-						#{wFilePath},
 						#{wCreatedate},
-						#{wUpdatedate},
-						#{wDeletedate},
 						#{mEmail});
     </insert>  
-    
-    <select id="listWork" parameterType="workVO">
-   		 select *
-   		 from WORK 
-    </select>
 
 	<select id="detailWork" resultType="workVO" parameterType="workVO">
 		SELECT *
 		FROM WORK
-		WHERE w_no = #{w_no} 
+		WHERE w_no = #{wNo} 
 	</select>
 	
 	<update id="updateWork" parameterType="workVO">
 		UPDATE WORK
-		SET w_title = #{w_title}, w_content = #{w_content}
-		WHERE w_no = #{w_no} 
+		SET w_title = #{wTitle}, w_content = #{wContent}
+		WHERE w_no = #{wNo} 
 	</update>
 	
 	<delete id="deleteWork" parameterType="workVO">
 		DELETE
 		FROM WORK
-		WHERE w_no = #{w_no} 
+		WHERE w_no = #{wNo} 
 	</delete>
 	
 

@@ -70,6 +70,32 @@
 		    cursor: pointer;
 		    box-shadow: 0 2px 4px rgba(0, 79, 255, 0.6);
 		}
+		
+		.btnArea #delBtn {
+		
+		    display: inline-block;
+		    font-weight: 1000;
+		    width: 110px;
+		    height: 40px;
+		    color: black;
+		    background-color: white;
+		    font-size: 13px;
+		    border: none;
+		    border-radius: 20px;
+		    box-shadow: 0 4px 16px rgba(0, 79, 255, 0.3);
+		}
+	
+		.btnArea #delBtn:focus { outline: 0; }
+	
+		.btnArea #delBtn:hover {
+	
+	    	animation-name: fadeIn;
+	    	animation-duration: 0.4s;
+		    color: white;
+		    background: lightBlue;
+		    cursor: pointer;
+		    box-shadow: 0 2px 4px rgba(0, 79, 255, 0.6);
+		}
 	 	
 	</style> 	
 	 		
@@ -80,6 +106,13 @@
 			
 			var $form = $('#modifyForm');
 			$form.attr('action','/member/modifyMember');
+			$form.submit();
+		}
+		
+		function delPage() {
+			
+			var $form = $('#modifyForm');
+			$form.attr('action','/member/deleteMember');
 			$form.submit();
 		}
 	
@@ -105,6 +138,8 @@
 					<button type="button" class="listBtn" id="listBtn" onclick="javascript:history.back();">목록</button>
 					<div class="space"></div>
 					<button type="button" class="modBtn" id="modBtn" onclick="modPage();">수정</button>
+					<div class="space"></div>
+					<button type="button" class="delBtn" id="delBtn" onclick="delPage();">삭제</button>
 					
 					<%-- <c:if test="${mVO.mEmail eq sessionUid}">
 						<button type="button" class="modBtn" id="modBtn" onclick="modPage();">수정</button>

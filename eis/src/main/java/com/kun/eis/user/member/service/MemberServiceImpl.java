@@ -34,11 +34,6 @@ public class MemberServiceImpl implements MemberService {
 	String uploadPath;
 
 	@Override
-	public List<MemberVO> testListMember(MemberVO vo) {
-		return memberMapper.testListMember(vo);
-	}
-		
-	@Override
 	public List<MemberVO> selectListMember(MemberVO vo) {
 		return memberMapper.selectListMember(vo);
 	}

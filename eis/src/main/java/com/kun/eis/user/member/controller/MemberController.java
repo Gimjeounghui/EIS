@@ -185,17 +185,18 @@ public class MemberController {
 	
 	
 	/**
-	 * 23.05.23
-	 * updateMember 시작
+	 * 23.05.24
+	 * updateMember 수정 완료
 	 */
 	@Transactional
-	@RequestMapping("/updateMember") // MemberVO에 mPhoto 추가 후 수정 - 완료
-	public String updateMember(@ModelAttribute("MemberVO") MemberVO vo, Model model, HttpSession session_a,
+	@RequestMapping("/updateMember") // MemberVO에 mPhoto 추가 후 수정 예정
+	public String updateMember(@ModelAttribute("vo") MemberVO vo, Model model, HttpSession session_a,
 			 RedirectAttributes ra, HttpServletRequest request) {
-
+		
 		session_a.invalidate();
 		HttpSession session = request.getSession();
 		boolean a = memberService.updateMember(vo);
+		
 		MemberVO member = vo;
 		session.setAttribute("mVO", member);
 		ra.addAttribute("mEmail", vo.getmEmail());
@@ -208,7 +209,8 @@ public class MemberController {
 	}
 	
 	/**
-	 * detailMember 제작 예정
+	 * 23.05.24 
+	 * deleteMember 시작
 	 */
 
 	@Transactional
@@ -219,13 +221,13 @@ public class MemberController {
 		 * 23.04.28 MemberVO 완성 후 deleteMember 추가 23.04.28 임시 MemberVO 생성 후 추가 완료
 		 */
 		boolean b = memberService.deleteMember(mEmail);
-		if (b) {
+		if (b) { // 삭제가 정상적으로 처리
 			ra.addFlashAttribute("msg", "탈퇴가 완료되었습니다.");
-		} else {
+		} else { 
 			ra.addFlashAttribute(("msg"), "오류로 인하여 탈퇴가 실패하였습니다.");
 		}
 		session.invalidate();
-		return "redirect:/goLogin";
+		return "redirect:/member/listMember.tiles";
 	}
 
 	
@@ -238,10 +240,7 @@ public class MemberController {
 	@RequestMapping("/modifyMember")
 	public String modifyMember(@ModelAttribute("vo") MemberVO vo, Model model, HttpSession session) {
 
-		// 디버깅 하기 위한 임의코드 작성
-		System.out.println("@@@@");
-
-		MemberVO mVO = null;
+		MemberVO mVO;
 
 		mVO = memberService.detailMember(vo);
 		model.addAttribute("mVO", mVO);

@@ -19,8 +19,6 @@ import java.util.List;
 @Mapper
 public interface MemberMapper {
 	
-	public List<MemberVO> testListMember(MemberVO vo);
-
 	public List<MemberVO> selectListMember(MemberVO vo);
 
 	public MemberVO selectPwCode(MemberVO vo);

@@ -37,16 +37,15 @@
 
 	<update id="updateMember" parameterType="memberVO">
 		UPDATE MEMBER 
-		SET m_phone = #{mPhone}, m_pw = #{mPw}, m_updated_ate = NOW()
+		SET m_name = #{mName}, m_phone = #{mPhone}, m_pw = #{mPw}, m_updated_ate = NOW()
 		WHERE m_email = #{mEmail}
 	</update>
 
 
 	<delete id="deleteMember" parameterType="memberVO">
-		delete m, u 
-		from MEMBER m left join MEMBER_UPLOAD u
-		on (m.m_email = u.m_email)
-		where m.m_email = #{mEmail}
+		delete
+		from MEMBER 
+		where m_email = #{mEmail}
 	</delete>
 
 	<!-- 23.05.09 memberImageInsert 수정 1차 - memberImageInsert 
